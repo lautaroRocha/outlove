@@ -1,0 +1,66 @@
+@import "utilities/variables";
+@import "utilities/header";
+@import "utilities/intro";
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    scroll-behavior: smooth;
+}
+
+
+.tienda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+}
+@media (min-width: 960px){
+    .tienda {
+        flex-direction: row;
+    }
+}
+.tienda-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align:center;
+    width: 100%;
+    gap: .5rem;
+    background-color: #777;
+    padding: .5rem;
+    margin-top: 10vh;
+    input, select, label, button {
+        border-radius: 5px;
+        font-weight: 800;
+    }
+    label {
+        color: white ;
+    }
+    button{
+        padding: .5rem;
+    }
+} 
+.tienda-fotos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 5vh auto;
+    gap: .5rem;
+    max-width: 80%;
+    img{ 
+        width: clamp(20%, 15rem, 45%);
+        height: auto;
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.7) ;
+        }
+    }
+}
+

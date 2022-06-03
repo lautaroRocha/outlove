@@ -1,14 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Alaska Test</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;0,800;1,300;1,500;1,800&family=Raleway:wght@300;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles.css">
+  <title>Tienda</title>
 </head>
 <body>
-    <script src="primer.js">
-    </script>
-</body>
+  <header>
+    <div class="cabecera">
+      <span>
+        Outlove
+      </span>
+    </div>
+      <div >
+        <nav class="cabecera-clara">
+          <ul>
+            <li><a href="#inicio">Tienda</a></li>
+            <li><a href="#inicio">Extra</a></li>
+          </ul>
+        </nav>
+      </div>
+  </header>
+  <main>
+    <section id="inicio">
+      <div class="inicio-carrusel">
+        <img src="images/test-dos.jpg" alt="">
+        <div class="boton-next">
+          <span>
+            >
+          </span>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+    <section id="produc">
+      <div class="tienda">
+        <div class="tienda-control">
+          <label for="talle">Talle:</label>
+          <select name="talle" id="talle">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XLL</option>
+          </select>
+          <label for="color">Color</label>
+          <select name="color" id="color">
+              <option value="black">Blanco</option>
+              <option value="white">Negro</option>
+          </select>
+          <label for="canti">Cantidad</label>
+          <input type="number" name="canti" id="canti">
+          </label>
+          <button type="submit">Añadir al carrito</button>
+        </div>
+        <div >
+          <img id="producto-seleccion" src="images/remera1.jpg" alt="">
+        </div>
+        <div class="tienda-fotos">
+            
+        </div>
+      </div>
+    </section>
+    <section id="game">
+
+    </section>
+  </main>
+  <footer>
+  </footer>
+<script src="script.js"></script>
 </html>

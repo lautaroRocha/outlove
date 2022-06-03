@@ -1,0 +1,33 @@
+.inicio-carrusel {
+    display: grid;
+    place-items:center;
+    img {
+        width: 100%;
+        height:auto;
+        z-index: 1;
+        
+    }
+    .boton-next {
+        cursor: pointer;
+        width: 15vw;
+        height: 15vw;
+        border-radius: 100%;
+        background-color: $ama;
+        border: 5px solid $amaOsc;
+        z-index: 2;
+        margin-top: -8.5%;
+        margin-right: 10%;
+        justify-self: end;
+        text-align:center;
+        line-height: clamp(2rem, 12vw, 6rem);
+        span {
+        font-size:clamp(2rem, 12vw, 6rem);
+    }
+        &:hover {
+            box-shadow: 0px 0px 5px #fff;
+        }
+        &:active {
+            box-shadow: 0 0 5px #000;
+        }
+    }
+}
