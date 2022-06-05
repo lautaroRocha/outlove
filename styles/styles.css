@@ -80,6 +80,9 @@
     line-height: clamp(2rem, 12vw, 6rem); }
     .inicio-carrusel .boton-next span {
       font-size: clamp(2rem, 12vw, 6rem); }
+      .inicio-carrusel .boton-next span::selection {
+        background-color: transparent;
+        color: black; }
     .inicio-carrusel .boton-next:hover {
       box-shadow: 0px 0px 5px #fff; }
     .inicio-carrusel .boton-next:active {

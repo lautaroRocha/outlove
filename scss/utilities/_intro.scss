@@ -22,6 +22,10 @@
         line-height: clamp(2rem, 12vw, 6rem);
         span {
         font-size:clamp(2rem, 12vw, 6rem);
+        &::selection{
+            background-color: transparent;
+            color: black;
+        }
     }
         &:hover {
             box-shadow: 0px 0px 5px #fff;
@@ -29,5 +33,6 @@
         &:active {
             box-shadow: 0 0 5px #000;
         }
+        
     }
 }
