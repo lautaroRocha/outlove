@@ -38,11 +38,6 @@
         </div>
       </div>
     </section>
-
-
-
-
-
     <section id="produc">
       <div class="tienda">
         <div class="tienda-control">
@@ -54,17 +49,21 @@
             <option value="XL">XL</option>
             <option value="XXL">XLL</option>
           </select>
-          <label for="color">Color</label>
-          <select name="color" id="color">
-              <option value="black">Blanco</option>
-              <option value="white">Negro</option>
-          </select>
-          <label for="canti">Cantidad</label>
+          <label for="canti">Cantidad:</label>
           <input type="number" name="canti" id="canti">
           </label>
           <button type="submit">Añadir al carrito</button>
         </div>
-        <div >
+        <div class="filtro">
+          <label for="catego" >Mostrar:</label>
+          <select name="catego" id="">
+            <option value="">Todo</option>
+            <option value="">Remeras</option>
+            <option value="">Gorras</option>
+            <option value="">Calzado</option>
+          </select>
+        </div>
+        <div class="tienda-seleccion">
           <img id="producto-seleccion" src="images/remera1.png" alt="">
         </div>
         <div class="tienda-fotos">
@@ -73,10 +72,14 @@
       </div>
     </section>
     <section id="game">
-
     </section>
   </main>
   <footer>
+    <div class="foot">
+      <div class="hue"></div>
+      <div class="shade"> </div>
+      <div class="shader"> </div>
+    </div>
   </footer>
 <script src="script.js"></script>
 </html>

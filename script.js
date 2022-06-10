@@ -2,24 +2,24 @@
 
 var ans = prompt('¿Querés que te cuenta el cuento de la buena pipa? (si/no)');
 
-for(let i=0; i<3; i++){
-    if (ans == 'si' ){
+for(let i=0; i<=4; i++){
+    if (ans.toLowerCase() == 'si' ||  ans == "sí" ){
         ans = prompt('No dije que sí, dije que si querés que te cuenta el cuento de la buena pipa');
-    }else if(ans == 'no'){
+    }else if(ans.toLowerCase() == 'no'){
     ans = prompt('¿Seguro que no querés que te cuente el cuento de la buena pipa?');
-    }else {
-    ans = prompt('Por sí o por no, ¿querés que te cuenta el cuento de la buena pipa? ');
+    }else{
+    ans = prompt('¡No te distraigas! ¿Querés que te cuenta el cuento de la buena pipa, sí o no? ')
+    } 
+    if(i == 4){
+        alert('¡disfruta del sitio!');
     }
 }
 
 
 
 
-
-
-
 //CARRUSEL DE BANNER 
-let imagenCarrusel = document.querySelector("#imagen-carrusel")
+{let imagenCarrusel = document.querySelector("#imagen-carrusel")
 const imagenesCarru = ["test-uno.png", "test-dos.png", "test-tres.png"];
 let botonCarrusel = document.querySelector("#boton-carrusel");
 let posicion = 0
@@ -42,7 +42,7 @@ function cambiarFoto(){
 }
 function cambiarCopy() {
     textoCarru.textContent = copyCarru[posicion];
-}
+}}
 //DISPLAY DE PRODUCTOS Y SELECCIÓN
 {const productos = ["remera1", "remera2", "remera3", "remera4", "remera5", "remera6" ];
 

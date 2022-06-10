@@ -13,7 +13,7 @@
 
 .cabecera-clara {
   background-color: #00c652;
-  height: 23vh;
+  height: 20vh;
   display: flex;
   justify-content: flex-end; }
   .cabecera-clara ul {
@@ -67,11 +67,12 @@
     justify-self: right;
     text-align: right;
     margin-right: 5vw;
-    margin-bottom: 40%;
+    margin-left: 20vw;
+    margin-bottom: 30%;
     letter-spacing: .3rem;
-    font-size: 1rem;
+    font-size: clamp(0.5rem, 5vw, 1rem);
     background-color: rgba(118, 31, 162, 0.5);
-    padding: .5rem;
+    padding: 0;
     border-radius: 15px;
     color: #fff;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
@@ -104,6 +105,91 @@
     .inicio-carrusel .boton-next:active {
       box-shadow: 0 0 5px #000; }
 
+footer {
+  position: relative;
+  margin-top: 20vh;
+  bottom: 0;
+  width: 100vw;
+  height: 30vh;
+  background-color: #5efa81; }
+  footer .foot {
+    display: flex;
+    height: 100%;
+    flex-direction: row-reverse; }
+    footer .foot .shade {
+      background-color: #009423;
+      width: 40%; }
+    footer .foot .shader {
+      background-color: #00c652;
+      width: 30%; }
+
+.tienda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 1.5rem; }
+  .tienda .tienda-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    background-color: #00c652;
+    padding: 1rem 2rem;
+    margin: 10vh auto;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: -15px 15px #5efa81; }
+    .tienda .tienda-control input, .tienda .tienda-control select, .tienda .tienda-control label {
+      text-align: center;
+      border-radius: 5px;
+      font-weight: 800;
+      width: 33%; }
+    .tienda .tienda-control button {
+      border-radius: 5px;
+      font-weight: 800;
+      padding: .5rem;
+      margin: .5rem; }
+      .tienda .tienda-control button:hover {
+        cursor: pointer;
+        background-color: #ffff52; }
+      .tienda .tienda-control button:active {
+        background-color: #ffd600;
+        box-shadow: -2px 2px 10px #ffff52, 2px -2px 10px #ffff52; }
+  .tienda .filtro {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #ffd600;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: -15px 10px #ffff52; }
+  .tienda .tienda-seleccion {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .tienda .tienda-seleccion img {
+      width: 80%;
+      margin: 1.5rem; }
+  .tienda .tienda-fotos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    gap: .5rem;
+    max-width: 80%; }
+    .tienda .tienda-fotos img {
+      width: clamp(20%, 15rem, 45%);
+      height: auto; }
+      .tienda .tienda-fotos img:hover {
+        cursor: pointer;
+        transform: scale(1.7); }
+
+@media (min-width: 960px) {
+  .tienda {
+    flex-direction: row; } }
+
 * {
   margin: 0;
   padding: 0;
@@ -112,45 +198,10 @@
   font-family: 'Open Sans', sans-serif;
   scroll-behavior: smooth; }
 
-.tienda {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%; }
+body {
+  overflow-x: hidden;
+  min-width: 300px; }
 
-@media (min-width: 960px) {
-  .tienda {
-    flex-direction: row; } }
-
-.tienda-control {
+main {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  gap: .5rem;
-  background-color: #777;
-  padding: .5rem;
-  margin-top: 10vh; }
-  .tienda-control input, .tienda-control select, .tienda-control label, .tienda-control button {
-    border-radius: 5px;
-    font-weight: 800; }
-  .tienda-control label {
-    color: white; }
-  .tienda-control button {
-    padding: .5rem; }
-
-.tienda-fotos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 5vh auto;
-  gap: .5rem;
-  max-width: 80%; }
-  .tienda-fotos img {
-    width: clamp(20%, 15rem, 45%);
-    height: auto; }
-    .tienda-fotos img:hover {
-      cursor: pointer;
-      transform: scale(1.7); }
+  flex-direction: column; }

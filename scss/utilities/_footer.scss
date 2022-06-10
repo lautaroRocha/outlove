@@ -1,0 +1,21 @@
+footer {
+    position: relative;
+    margin-top: 20vh;
+    bottom: 0;
+    width: 100vw;
+    height: 30vh;
+    background-color: $verCla;
+    .foot {
+       display: flex;
+       height: 100%;
+       flex-direction: row-reverse;
+       .shade {
+           background-color: $verOsc;
+           width: 40%;
+       }
+       .shader {
+           background-color: $ver;
+           width: 30%;
+       }
+    }
+}

@@ -7,11 +7,12 @@
      justify-self: right;
      text-align: right;
      margin-right: 5vw;
-     margin-bottom: 40%;
+     margin-left: 20vw;
+     margin-bottom: 30%;
      letter-spacing: .3rem;
-     font-size: 1rem;
+     font-size: clamp(.5rem, 5vw, 1rem);
      background-color: rgba(118, 31, 162, .5);
-     padding: .5rem;
+     padding: 0;
      border-radius: 15px;
      color: #fff;
      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
