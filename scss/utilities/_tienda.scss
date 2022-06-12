@@ -72,8 +72,23 @@
         }
     }
 }
-@media (min-width: 960px){
-    .tienda {
-        flex-direction: row;
+
+@media (min-width: 800px){
+    .tienda-uno {
+        display:flex;
+        align-items: center;
+        gap: 10rem;
+        .filtro {
+            height: fit-content;
+        }
+    }
+    .tienda-dos {
+        display:flex;
+       .tienda-seleccion{
+        width: 40%;
+       }
+       .tienda-fotos{
+        width:40%;
+       }
     }
 }

@@ -1,4 +1,4 @@
-//PRIMER ENTREGABLE 
+/*
 
 var ans = prompt('¿Querés que te cuenta el cuento de la buena pipa? (si/no)');
 
@@ -14,6 +14,7 @@ for(let i=0; i<=4; i++){
         alert('¡disfruta del sitio!');
     }
 }
+*/
 
 
 
