@@ -1,15 +1,16 @@
 .cabecera {
   background-color: #009423;
   height: 6vh;
-  width: 100vw;
+  width: 100%;
   padding: 1rem;
   position: fixed;
   z-index: 4;
   display: flex;
   align-items: center; }
-  .cabecera span {
+  .cabecera span a {
     font-weight: 800;
     color: #fff;
+    text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 2vw;
     font-size: 2rem; }
@@ -82,6 +83,38 @@
       box-shadow: 0px 0px 5px #fff; }
     .inicio-carrusel .boton-next:active {
       box-shadow: 0 0 5px #000; }
+
+.inicio-copy {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 10vh auto;
+  position: relative; }
+  .inicio-copy .inicio-copy-fondo {
+    position: absolute;
+    z-index: -1;
+    display: flex;
+    align-self: center;
+    width: 100%;
+    margin: 0; }
+    .inicio-copy .inicio-copy-fondo img {
+      filter: invert(91%) sepia(66%) saturate(645%) hue-rotate(57deg) brightness(102%) contrast(96%);
+      height: auto;
+      width: 25vw; }
+  .inicio-copy .inicio-copy-texto {
+    display: flex;
+    justify-content: center; }
+    .inicio-copy .inicio-copy-texto p {
+      width: 80%;
+      font-weight: 800;
+      line-height: 1.5rem; }
+      .inicio-copy .inicio-copy-texto p span {
+        display: inline-block;
+        color: #fff;
+        background-color: #ffd600;
+        padding: 2px; }
+        .inicio-copy .inicio-copy-texto p span:first-of-type {
+          transform: skew(-3deg, -3deg); }
 
 @media (min-width: 800px) {
   .inicio-carrusel {

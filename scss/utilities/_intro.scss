@@ -54,7 +54,44 @@
         
     }
 }
-
+.inicio-copy {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 10vh auto;
+    position: relative;
+    .inicio-copy-fondo{
+        position: absolute;
+        z-index: -1;
+        display: flex;
+        align-self: center;
+        width: 100%;
+        margin: 0;
+        img{
+            filter: invert(91%) sepia(66%) saturate(645%) hue-rotate(57deg) brightness(102%) contrast(96%);
+            height: auto;
+            width: 25vw;}
+    }
+    
+    .inicio-copy-texto{
+        display: flex;
+    justify-content: center;
+    p {
+        width: 80%;
+        font-weight: 800;
+        line-height: 1.5rem;
+        span{
+            display: inline-block;
+            color: #fff;
+            background-color: $ama;
+            padding: 2px;
+            &:first-of-type{
+                transform: skew(-3deg, -3deg);
+            }
+        }
+    }
+}
+}
 @media (min-width: 800px){
     .inicio-carrusel{
         margin: 0 auto 15vh;
