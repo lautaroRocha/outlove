@@ -5,47 +5,60 @@
     justify-content: center;
     height: 100%;
     gap:1.5rem;
-    .tienda-control {
-        display: flex;
-        flex-direction: column;
+    margin: 5rem auto;
+    .tienda-uno{
+        display:flex;
+        flex-direction: column-reverse;
         align-items: center;
-        gap: .5rem;
-        background-color: $ver;
-        padding: 1rem 2rem;
-        margin: 10vh auto;
-        width: 80%;
-        border-radius: 10px;
-        box-shadow: -15px 15px  $verCla;
-        input, select, label{
-            text-align: center;
-            border-radius: 5px;
+        gap: 1rem;
+        .tienda-control {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .5rem;
+            background-color: $ver;
+            padding: 1rem 2rem;
+            width: 80%;
+            border-radius: 10px;
+            box-shadow: -15px 15px  $verCla;
             font-weight: 800;
-            width: 33%;
-        }
-        button{
-            border-radius: 5px;
+            input, select{
+                text-align: center;
+                border-radius: 5px;
+                width: 33%;
+            }
+            button{
+                border-radius: 5px;
+                font-weight: 800;
+                padding: .5rem;
+                margin: .5rem;
+                &:hover {
+                    cursor: pointer;
+                    background-color: $amaCla;
+                }
+                &:active {
+                    background-color: $ama;
+                    box-shadow: -2px 2px 10px $amaCla, 2px -2px 10px $amaCla ;
+                }
+            }
+        } 
+        .filtro {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            text-align: center; 
+            background-color: $ama;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: -15px 10px $amaCla;
             font-weight: 800;
-            padding: .5rem;
-            margin: .5rem;
-            &:hover {
-                cursor: pointer;
-                background-color: $amaCla;
-            }
-            &:active {
-                background-color: $ama;
-                box-shadow: -2px 2px 10px $amaCla, 2px -2px 10px $amaCla ;
+            select{
+                text-align: center;
+                border-radius: 5px;
+                font-weight: 500;
             }
         }
-    } 
-    .filtro {
-        display: flex;
-        flex-direction: column;
-        text-align: center; 
-        background-color: $ama;
-        padding: 1rem;
-        border-radius: 10px;
-        box-shadow: -15px 10px $amaCla;
-    }
+}
     .tienda-seleccion {
         display: flex;
         flex-direction: column;
@@ -73,22 +86,26 @@
     }
 }
 
-@media (min-width: 800px){
-    .tienda-uno {
-        display:flex;
-        align-items: center;
-        gap: 10rem;
-        .filtro {
-            height: fit-content;
-        }
-    }
-    .tienda-dos {
-        display:flex;
-       .tienda-seleccion{
-        width: 40%;
-       }
-       .tienda-fotos{
-        width:40%;
-       }
-    }
+@media (min-width: 850px){
+    .tienda {
+        .tienda-uno {
+                flex-direction: row;
+                align-items: center;
+                gap: 10rem;
+                margin-bottom: 2rem;
+                .filtro {
+                    height: fit-content;
+                }
+            }
+            .tienda-dos {
+                display:flex;
+                max-width: 1300px;
+            .tienda-seleccion{
+                width: 40%;
+            }
+            .tienda-fotos{
+                width:40%;
+            }
+            }
+}
 }
