@@ -1,20 +1,20 @@
-/*
-
-var ans = prompt('¿Querés que te cuenta el cuento de la buena pipa? (si/no)');
-
-for(let i=0; i<=4; i++){
-    if (ans.toLowerCase() == 'si' ||  ans == "sí" ){
-        ans = prompt('No dije que sí, dije que si querés que te cuenta el cuento de la buena pipa');
-    }else if(ans.toLowerCase() == 'no'){
-    ans = prompt('¿Seguro que no querés que te cuente el cuento de la buena pipa?');
-    }else{
-    ans = prompt('¡No te distraigas! ¿Querés que te cuenta el cuento de la buena pipa, sí o no? ')
-    } 
-    if(i == 4){
-        alert('¡disfruta del sitio!');
+//PRIMER PRENTREGA 
+function saludarUsuario() {
+    let nombre = prompt(`¡Bienvenido a Outlove! Nos gustaría conocerte un poco más, cómo te llamás?`);
+    if(nombre == null || nombre == ""){
+        nombre = prompt(`No queremos molestarte, nos encantaría saber tu nombre.`)
     }
-}
-*/
+        let pregunta = confirm(`Hola ${nombre}, ¿te gustaría recibir las últimas ofertas en tu correo?`)
+   
+        if(pregunta){
+            alert(`¡Qué bueno! ¡Estaremos en contacto!`)
+        } else {
+            alert(`¡Está bien, disfruta del sitio!`)
+        }
+    } 
+    ;
+
+
 
 
 
@@ -59,9 +59,4 @@ for (let i=0; i<productos.length; i++) {
 };
 
 }
-
-
-
-
-
 

@@ -1,18 +1,21 @@
 .cabecera {
     background-color: $verOsc;
     height: 6vh;
-    width: 100vw;
+    width: 100%;
     padding: 1rem;
     position: fixed;
     z-index: 4;
     display: flex;
     align-items: center;
     span {
+        a{
         font-weight: 800;
         color: #fff;
+        text-decoration: none;
         text-transform: uppercase;
         letter-spacing: 2vw;
         font-size: 2rem;
+        }
     }
 }
 .cabecera-clara {
