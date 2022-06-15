@@ -1,8 +1,4 @@
 //PRIMER PRENTREGA 
-<<<<<<< HEAD
-=======
-
->>>>>>> edb504cac6cc74be2c1ece9baaa989bb5d1f19bc
 function saludarUsuario() {
     let nombre = prompt(`¡Bienvenido a Outlove! Nos gustaría conocerte un poco más, cómo te llamás?`);
     if(nombre == null || nombre == ""){
