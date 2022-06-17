@@ -86,6 +86,38 @@
     }
 }
 
+.tienda-carrito {
+    background-color: $ama;
+    width: 20rem;
+    margin: 0 auto 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1rem;
+    padding: 1rem 2rem;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: -15px 15px  $amaCla;
+    font-weight: 800;
+    img {
+        width: 70%;
+        height: auto;
+    }
+    button{
+        border-radius: 5px;
+        font-weight: 800;
+        padding: .5rem;
+        margin: .5rem;
+        &:hover {
+            cursor: pointer;
+            background-color: $verCla;
+        }
+        &:active {
+            background-color: $ver;
+            box-shadow: -2px 2px 10px $verCla, 2px -2px 10px $amaCla ;
+        }
+    }
+}
 @media (min-width: 850px){
     .tienda {
         .tienda-uno {
