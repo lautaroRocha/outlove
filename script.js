@@ -1,6 +1,6 @@
 
 //CARRUSEL DE BANNER 
-let imagenCarrusel = document.querySelector("#imagen-carrusel")
+{let imagenCarrusel = document.querySelector("#imagen-carrusel")
 const imagenesCarru = ["test-uno.png", "test-dos.png", "test-tres.png"];
 let botonCarrusel = document.querySelector("#boton-carrusel");
 let posicion = 0
@@ -23,10 +23,10 @@ function cambiarFoto(){
 }
 function cambiarCopy() {
     textoCarru.textContent = copyCarru[posicion];
-}
+}}
 //DISPLAY DE PRODUCTOS Y SELECCIÓN
 
-const nombreProducto = document.querySelector('#producto-seleccion-nombre');
+{const nombreProducto = document.querySelector('#producto-seleccion-nombre');
 
 const productos = ["remera1", "remera2", "remera3", "remera4", "remera5", "remera6" ];
 
@@ -69,14 +69,7 @@ for (let i=0; i<productos.length; i++) {
     productoSeleccionado.setAttribute('src' , `images/${productos[i]}.png`))
     nuevaFoto.addEventListener('click', actualizarNombre)
 };
-
-
-
-
-
-
-
-
+}
 
 //PASA EL PRODUCTO SELECCIONADO
 //AL CARRITO
@@ -91,9 +84,7 @@ class Pedido {
         this.observaciones = observaciones
     }
 }
-
 let carrito = {};
-
 class Producto {
     constructor(modelo, talle, cantidad, precio, observaciones, cliente, direccion){
         this.modelo = modelo,
@@ -109,5 +100,21 @@ class Producto {
     }
 }
 
+
 const añadirCarrito = document.querySelector("#añadir-carrito")
 
+
+let remeraNegraMontaña = {};
+const botonAnadir = document.querySelector("#anadir-carrito");
+
+function hacerObjeto() {
+    
+    const talle = document.querySelector("#talle").value;
+    const cantidad = document.querySelector("#canti").value;
+    const observaciones = document.querySelector("#obs").value;
+    const cliente = document.querySelector("#cliente").value;
+    const direccion = document.querySelector("#direccion").value;
+
+    remeraNegraMontaña = new Producto("remera negra montaña", `${talle}`, `${cantidad}`, 1700, `${observaciones}`, `${cliente}`, `${direccion}`)}
+
+   

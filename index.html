@@ -52,22 +52,32 @@
     <section id="tienda">
       <div class="tienda">
        <div class="tienda-uno">
-         <div class="tienda-control">
-           <label for="talle">Talle:</label>
-           <select name="talle" id="talle">
-             <option value="S">S</option>
-             <option value="M">M</option>
-             <option value="L">L</option>
-             <option value="XL">XL</option>
-             <option value="XXL">XLL</option>
-           </select>
-           <label for="canti">Cantidad:</label>
-           <input type="number" name="canti" id="canti">
-           </label>
-           <label for="dire">Enviar a:</label>
-           <input type="text">
-           <button type="submit" id="añadir-carrito">Añadir al carrito</button>
-         </div>
+        <form onsubmit="hacerObjeto(); return false">
+           <div class="tienda-control">
+             <label for="talle">Talle:</label>
+             <select name="talle" id="talle">
+               <option value="S">S</option>
+               <option value="M">M</option>
+               <option value="L">L</option>
+               <option value="XL">XL</option>
+               <option value="XXL">XLL</option>
+             </select>
+             <label for="canti">Cantidad:</label>
+             <input type="number" name="canti" id="canti">
+             </label>
+             <label for="dire">Dirección de envio:</label>
+             <input type="text" id="direccion">
+             
+             <label for="cliente">A nombre de:</label>
+             <input type="text" id="cliente">
+          
+             
+             <label for="obs">Observaciones:</label>
+             <input type="text" id="obs">
+          
+             <button type="submit" id="anadir-carrito">Añadir al carrito</button>
+           </div>
+        </form>
          <div class="filtro">
            <label for="catego" >Mostrar:</label>
            <select name="catego" id="">
