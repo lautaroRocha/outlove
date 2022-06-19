@@ -60,7 +60,6 @@ function actualizarNombre() {
     
 
 
-//////////////////////////
 //PASA EL PRODUCTO SELECCIONADO
 //AL CARRITO
 
@@ -85,18 +84,15 @@ class Producto {
     }
 }
 
-    let remeraNegraMontaña = new Producto("remera negra montaña",  1700, "remera1");
-    let remeraBlancaMontaña = new Producto("remera blanca montaña", 1700, "remera2");
-    let remeraCaminante = new Producto("remera caminante", 1700, "remera3");
-    let remeraEmblema = new Producto("remera emblema", 1700, "remera4");
-    let remeraCaminanteBlanca = new Producto("remera caminante blanca", 1700, "remera5");
-    let remeraNegraMontañaBlanca = new Producto("remera negra montaña blanca", 1700, "remera6");
-        
-
-
 //Bucle que crea las cards
 //de los productos repasando
 //el array
+let remeraNegraMontaña = new Producto("remera negra montaña",  1700, "remera1");
+let remeraBlancaMontaña = new Producto("remera blanca montaña", 1700, "remera2");
+let remeraCaminante = new Producto("remera caminante", 1700, "remera3");
+let remeraEmblema = new Producto("remera emblema", 1700, "remera4");
+let remeraCaminanteBlanca = new Producto("remera caminante blanca", 1700, "remera5");
+let remeraNegraMontañaBlanca = new Producto("remera negra montaña blanca", 1700, "remera6");
 const productos = [remeraNegraMontaña,remeraBlancaMontaña,remeraCaminante,remeraEmblema,remeraCaminanteBlanca, remeraNegraMontañaBlanca];
 for (let i=0; i<productos.length; i++) {
     let nuevaFoto = document.createElement('img');
@@ -116,7 +112,7 @@ const botonAnadir = document.querySelector("#anadir-carrito");
 let carrito = {};
 
 function enviarAlCarrito() {
-    
+
     let talle = document.querySelector("#talle").value;
     let cantidad = document.querySelector("#canti").value;
     let observaciones = document.querySelector("#obs").value;
@@ -124,7 +120,21 @@ function enviarAlCarrito() {
     let direccion = document.querySelector("#direccion").value;
 
     carrito = new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`);
+
+    //DOM del carrito
+
+    let productoCompra = document.querySelector("#producto-compra")
+
+    let cantidadCompra = document.querySelector("#cantidad-compra")
+
+    let imagenCompra = document.querySelector("#imagen-compra")
+
+
+    productoCompra.textContent = carrito.producto;
+    cantidadCompra.textContent = carrito.cantidad;
+    imagenCompra.setAttribute('src', productoSeleccionado.getAttribute('src'));
 }
 
-
 botonAnadir.addEventListener('click', enviarAlCarrito);
+
+
