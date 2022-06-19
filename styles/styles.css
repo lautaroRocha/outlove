@@ -243,22 +243,35 @@ footer {
         cursor: pointer;
         transform: scale(1.7); }
 
+.carrito-modal {
+  display: none;
+  position: fixed;
+  z-index: 4;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.4); }
+
 .tienda-carrito {
   background-color: #ffd600;
-  width: 20rem;
-  margin: 0 auto 10vh;
+  width: 10vw;
+  height: 80vh;
+  margin: 10vh auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 2rem;
+  padding: 1rem;
   width: 80%;
   border-radius: 10px;
   box-shadow: -15px 15px #ffff52;
   font-weight: 800; }
   .tienda-carrito img {
-    width: 70%;
-    height: auto; }
+    width: auto;
+    height: 60%; }
   .tienda-carrito button {
     border-radius: 5px;
     font-weight: 800;

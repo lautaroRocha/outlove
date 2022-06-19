@@ -76,7 +76,8 @@
              <input type="text" id="obs">
           
              <button type="submit" id="anadir-carrito">Añadir al carrito</button>
-           </div>
+             <button id="boton-modal"> carrito </button>
+            </div>
         </form>
          <div class="filtro">
            <label for="catego" >Mostrar:</label>
@@ -99,11 +100,14 @@
           </div>
         </div>
       </div>
-      <div class="tienda-carrito">
-        <p>Estás comprando <span id="cantidad-compra">2</span> <span id="producto-compra"> Remeras</span></p>
-        <img  id="imagen-compra" src="images/remera1.png" alt="">
-        <button type="submit">Comprar</button>
-      </div>
+     <div class="carrito-modal" id="carrito-modal">
+       <div class="tienda-carrito">
+        <button class="boton-cerrar" id="cerrar-modal">X</button>
+         <p>Estás comprando <span id="cantidad-compra">2</span> <span id="producto-compra"> Remeras</span></p>
+         <img  id="imagen-compra" src="images/remera1.png" alt="">
+         <button type="submit">Comprar</button>
+       </div>
+     </div>
     </section>
     <section id="extra">
     </section>

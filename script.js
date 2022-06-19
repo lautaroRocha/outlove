@@ -137,4 +137,16 @@ function enviarAlCarrito() {
 
 botonAnadir.addEventListener('click', enviarAlCarrito);
 
+///MODAL DEL CARRITO 
 
+let botonModal = document.querySelector('#boton-modal')
+let carritoModal = document.querySelector('#carrito-modal')
+let botonCerrarModal = document.querySelector("#cerrar-modal")
+
+
+botonModal.onclick = function() {
+    carritoModal.style.display = "block";
+  }
+botonCerrarModal.onclick = function() {
+    carritoModal.style.display = "none";
+}
