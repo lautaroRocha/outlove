@@ -65,37 +65,32 @@ function actualizarNombre() {
 //AL CARRITO
 
 //clase del objeto del carrito
-
-
-//clase de los objetos a la venta
-class Producto {
-    constructor(modelo, talle, cantidad, precio, observaciones, cliente, direccion, link){
-        this.modelo = modelo,
-        this.talle = talle,
-        this.cantidad = cantidad, 
-        this.precio = precio,
-        this.observaciones = observaciones,
+class Pedido {
+    constructor(cliente, direccion, producto, cantidad, talle, observaciones){
         this.cliente = cliente,
-        this.direccion = direccion
-        this.link = link;
-    }
-    añadirAlCarro() {
-        carrito = new Pedido (this.cliente, this.direccion, this.modelo, this.cantidad, this.talle, this.observaciones)
+        this.direccion = direccion,
+        this.producto = producto,
+        this.cantidad = cantidad,
+        this.talle = talle,
+        this.observaciones = observaciones
     }
 }
 
-    const talle = document.querySelector("#talle").value;
-    const cantidad = document.querySelector("#canti").value;
-    const observaciones = document.querySelector("#obs").value;
-    const cliente = document.querySelector("#cliente").value;
-    const direccion = document.querySelector("#direccion").value;
+//clase de los objetos a la venta
+class Producto {
+    constructor(modelo, precio,link){
+        this.modelo = modelo,
+        this.precio = precio,
+        this.link = link;
+    }
+}
 
-    let remeraNegraMontaña = new Producto("remera negra montaña", `${talle}`, `${cantidad}`, 1700, `${observaciones}`, `${cliente}`, `${direccion}`, "remera1");
-    let remeraBlancaMontaña = new Producto("remera blanca montaña", `${talle}`, `${cantidad}`, 1700, `${observaciones}`, `${cliente}`, `${direccion}`, "remera2");
-    let remeraCaminante = new Producto("remera caminante", `${talle}`, `${cantidad}`, 1700, `${observaciones}`, `${cliente}`, `${direccion}`, "remera3");
-    let remeraEmblema = new Producto("remera emblema", `${talle}`, `${cantidad}`, 1700, `${observaciones}`, `${cliente}`, `${direccion}`, "remera4");
-    let remeraCaminanteBlanca = new Producto("remera caminante blanca", `${talle}`, `${cantidad}`, 1700, `${observaciones}`, `${cliente}`, `${direccion}`, "remera5");
-    let remeraNegraMontañaBlanca = new Producto("remera negra montaña blanca", `${talle}`, `${cantidad}`, 1700, `${observaciones}`, `${cliente}`, `${direccion}`, "remera6");
+    let remeraNegraMontaña = new Producto("remera negra montaña",  1700, "remera1");
+    let remeraBlancaMontaña = new Producto("remera blanca montaña", 1700, "remera2");
+    let remeraCaminante = new Producto("remera caminante", 1700, "remera3");
+    let remeraEmblema = new Producto("remera emblema", 1700, "remera4");
+    let remeraCaminanteBlanca = new Producto("remera caminante blanca", 1700, "remera5");
+    let remeraNegraMontañaBlanca = new Producto("remera negra montaña blanca", 1700, "remera6");
         
 
 
@@ -116,23 +111,20 @@ for (let i=0; i<productos.length; i++) {
 //FUNCION PARA PASAR
 //EL PEDIDO AL CARRITO
 
-const añadirCarrito = document.querySelector("#añadir-carrito"); 
-
 const botonAnadir = document.querySelector("#anadir-carrito");
 
-
-
-class Pedido {
-    constructor(cliente, direccion, producto, cantidad, talle, observaciones){
-        this.cliente = cliente,
-        this.direccion = direccion,
-        this.producto = producto,
-        this.cantidad = cantidad,
-        this.talle = talle,
-        this.observaciones = observaciones
-    }
-}
 let carrito = {};
+
 function enviarAlCarrito() {
-    carrito = new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `84`, `${talle}` `${observaciones}`)
+    
+    let talle = document.querySelector("#talle").value;
+    let cantidad = document.querySelector("#canti").value;
+    let observaciones = document.querySelector("#obs").value;
+    let cliente = document.querySelector("#cliente").value;
+    let direccion = document.querySelector("#direccion").value;
+
+    carrito = new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`);
 }
+
+
+botonAnadir.addEventListener('click', enviarAlCarrito);
