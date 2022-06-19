@@ -4,14 +4,17 @@ function saludarUsuario() {
     if(nombre == null || nombre == ""){
         nombre = prompt(`No queremos molestarte, nos encantaría saber tu nombre.`)
     }
-        let pregunta = confirm(`Hola ${nombre}, ¿te gustaría recibir las últimas ofertas en tu correo?`)
-   
-        if(pregunta){
-            alert(`¡Qué bueno! ¡Estaremos en contacto!`)
+    let pregunta = confirm(`Hola ${nombre}, ¿te gustaría recibir las últimas ofertas en tu correo?`)
+    if(pregunta){
+        alert(`¡Qué bueno! ¡Estaremos en contacto!`)
         } else {
             alert(`¡Está bien, disfruta del sitio!`)
         }
     } 
+
+for(let i = 0; i<1; i++){
+    saludarUsuario();
+}
     ;
 
 
