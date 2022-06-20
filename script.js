@@ -127,12 +127,16 @@ function enviarAlCarrito() {
 
     let cantidadCompra = document.querySelector("#cantidad-compra")
 
-    let imagenCompra = document.querySelector("#imagen-compra")
+    let divFotos =document.querySelector("#carrito-flex")
 
+    let imagenCompra = document.createElement('img')
 
     productoCompra.textContent = carrito.producto;
     cantidadCompra.textContent = carrito.cantidad;
     imagenCompra.setAttribute('src', productoSeleccionado.getAttribute('src'));
+    divFotos.appendChild(imagenCompra);
+        
+
 }
 
 botonAnadir.addEventListener('click', enviarAlCarrito);
