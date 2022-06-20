@@ -6,26 +6,28 @@
     height: 100%;
     gap:1.5rem;
     margin: 5rem auto;
+    width: 100vw;
     .tienda-uno{
         display:flex;
         flex-direction: column-reverse;
         align-items: center;
-        gap: 1rem;
+        gap: 2rem;
         .tienda-control {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             align-items: center;
+            margin: auto;
             gap: .5rem;
             background-color: $ver;
             padding: 1rem 2rem;
-            width: 80%;
+            width: 90%;
             border-radius: 10px;
             box-shadow: -15px 15px  $verCla;
             font-weight: 800;
-            input, select{
+            input, select {
                 text-align: center;
                 border-radius: 5px;
-                width: 33%;
+                width: 80%;
             }
             button{
                 border-radius: 5px;
@@ -88,7 +90,7 @@
 
 
 .carrito-modal {
-    display: none;
+  display: none;
   position: fixed;
   z-index: 4;
   left: 0;
@@ -98,8 +100,7 @@
   overflow: auto; 
   background-color: rgb(0,0,0); 
   background-color: rgba(0,0,0,0.4);
-}
-.tienda-carrito {
+  .tienda-carrito {
     background-color: $ama;
     width: 10vw;
     height: 80vh;
@@ -113,25 +114,43 @@
     border-radius: 10px;
     box-shadow: -15px 15px  $amaCla;
     font-weight: 800;
-    img {
-        width: auto;
-        height: 60%;
-    }
-    button{
-        border-radius: 5px;
-        font-weight: 800;
-        padding: .5rem;
-        margin: .5rem;
-        &:hover {
-            cursor: pointer;
-            background-color: $verCla;
+    .carrito-top{
+    display: flex;
+    justify-content: space-around;
+        .boton-cerrar{
+            font-size: 2rem;
+            background-color: transparent;
+            border: none;
         }
-        &:active {
-            background-color: $ver;
-            box-shadow: -2px 2px 10px $verCla, 2px -2px 10px $amaCla ;
+    }
+    .carrito-bottom{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img {
+            width: 50%;
+            height: auto;
+        }
+        button{
+            border-radius: 5px;
+            font-weight: 800;
+            padding: .5rem;
+            margin: .5rem;
+            &:hover {
+                cursor: pointer;
+                background-color: $verCla;
+            }
+            &:active {
+                background-color: $ver;
+                box-shadow: -2px 2px 10px $verCla, 2px -2px 10px $amaCla ;
+            }
         }
     }
 }
+
+}
+
+
 @media (min-width: 850px){
     .tienda {
         .tienda-uno {
