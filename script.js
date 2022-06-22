@@ -57,9 +57,6 @@ function actualizarNombre() {
         nombreProducto.textContent = "producto";
     }
     }
-    
-
-
 //PASA EL PRODUCTO SELECCIONADO
 //AL CARRITO
 
@@ -109,37 +106,28 @@ for (let i=0; i<productos.length; i++) {
 
 const botonAnadir = document.querySelector("#anadir-carrito");
 
-let carrito = {};
+let carrito = [];
+ 
 
 function enviarAlCarrito() {
-
     let talle = document.querySelector("#talle").value;
     let cantidad = document.querySelector("#canti").value;
     let observaciones = document.querySelector("#obs").value;
     let cliente = document.querySelector("#cliente").value;
     let direccion = document.querySelector("#direccion").value;
 
-    carrito = new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`);
+    carrito.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`));
 
     //DOM del carrito
 
-    let productoCompra = document.querySelector("#producto-compra")
-
-    let cantidadCompra = document.querySelector("#cantidad-compra")
-
-    let divFotos =document.querySelector("#carrito-flex")
-
+    let divFotos = document.querySelector("#carrito-flex")
+    
     let imagenCompra = document.createElement('img')
 
-    productoCompra.textContent = carrito.producto;
-    cantidadCompra.textContent = carrito.cantidad;
     imagenCompra.setAttribute('src', productoSeleccionado.getAttribute('src'));
     divFotos.appendChild(imagenCompra);
-        
-
 }
-
-botonAnadir.addEventListener('click', enviarAlCarrito);
+botonAnadir.addEventListener('click', enviarAlCarrito)
 
 ///MODAL DEL CARRITO 
 
