@@ -69,6 +69,15 @@
             width: 80%;
             margin: 1.5rem;
         }
+        .seleccion-modelo{
+            text-transform: uppercase;
+            text-align: center;
+            margin: 7vh auto 3vh;
+            max-width: 80vw;
+            font-size: clamp(30px, 15vw, 40px);
+            background-color: $verCla;
+            border-radius: 10px;
+        }
     }
     .tienda-fotos {
         display: flex;
@@ -97,9 +106,13 @@
   top: 0;
   width: 100%; 
   height: 100%; 
-  overflow: auto; 
+  scrollbar-width: 500px;
   background-color: rgb(0,0,0); 
   background-color: rgba(0,0,0,0.4);
+  overflow-y: scroll;
+  &::-webkit-scrollbar{
+    width: 10px;
+  }
   .tienda-carrito {
     background-color: $ama;
     width: 10vw;
@@ -173,19 +186,52 @@
                 align-items: center;
                 gap: 10rem;
                 margin-bottom: 2rem;
+                .tienda-control{
+                    width: 40vw;
+                    max-width: 700px;
+                    &button{
+                        width: 40%;
+                    }
+                }
                 .filtro {
                     height: fit-content;
+                    width: 20vw;
+                    max-width: 150px;
                 }
             }
             .tienda-dos {
                 display:flex;
                 max-width: 1300px;
-            .tienda-seleccion{
-                width: 40%;
-            }
-            .tienda-fotos{
-                width:40%;
-            }
+                .tienda-seleccion{
+                    width: 40%;
+                }
+                .tienda-fotos{
+                    width:40%;
+                }
             }
 }
+    .carrito-modal{
+        .tienda-carrito{
+            width: 50%;
+            .carrito-top{
+                width: 100%;
+                justify-content: space-between;
+                p {
+                    width: auto;
+                }
+                .boton-cerrar{
+                    margin-left: 10px;
+                }
+            }
+            .carrito-bottom{
+                justify-content: center;
+                .carrito-img{
+                    img {
+                        width: 50%;
+                        max-width: 230px;
+                    }
+                }
+            }
+        }
+    }
 }
