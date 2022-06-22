@@ -1,4 +1,3 @@
-
 //Clase del objeto del carrito
 class Pedido {
     constructor(cliente, direccion, producto, cantidad, talle, observaciones){
