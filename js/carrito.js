@@ -45,6 +45,7 @@ let carritoModal = document.querySelector('#carrito-modal')
 let botonCerrarModal = document.querySelector("#cerrar-modal")
 
 
+let cantidadCompra = document.querySelector("#cantidad-comprada");
 
 //El modelo del producto seleccionado
 function actualizarNombre() {
@@ -101,9 +102,15 @@ function enviarAlCarrito() {
     let imagenCompra = document.createElement('img')
 
     imagenCompra.setAttribute('src', productoSeleccionado.getAttribute('src'));
+   
     divFotos.appendChild(imagenCompra);
+
+    sumarCantidad()
 }
 
+function sumarCantidad() {
+    cantidadCompra.textContent = carrito.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
+}
 
 botonAnadir.addEventListener('click', enviarAlCarrito)
 
