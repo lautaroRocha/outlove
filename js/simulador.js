@@ -27,11 +27,11 @@ let productosDisponibles = [];
 let carrito = [];
 
 productosDisponibles.push(new Producto ("remera", "negro", 1500))
-productosDisponibles.push(new Producto("remera", "blanco", 1500))
-productosDisponibles.push(new Producto("remera", "naranja", 1500));
-productosDisponibles.push(new Producto ("gorra", "negro", 700));
+productosDisponibles.push(new Producto("remera", "blanco", 1800))
+productosDisponibles.push(new Producto("remera", "naranja", 1200));
+productosDisponibles.push(new Producto ("gorra", "negro", 200));
 productosDisponibles.push(new Producto("gorra", "rojo", 700))
-productosDisponibles.push( new Producto("gorra", "azul", 700));
+productosDisponibles.push( new Producto("gorra", "azul", 500));
 
 //FILTRO QUE SELECCIONA
 //EL TIPO DE PRODUCTO
@@ -93,7 +93,7 @@ function colorYCantidad() {
     colorDisponible = COLORES_DISPONIBLES.includes(colorElegido);
     while(colorDisponible == false){     ///vuelve a preguntar si el color ingresado no existe
         repreguntarColor = confirm('El color que elegiste no está disponible, ¿quieres volver a ver las opciones?')
-        if (preguntarColor){
+        if (repreguntarColor){
         colorYCantidad();
         }else {
             alert('¡Vuelve a visitarnos pronto!')
