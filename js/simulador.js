@@ -36,32 +36,32 @@ productosDisponibles.push( new Producto("gorra", "azul", 700));
 //FILTRO QUE SELECCIONA
 //EL TIPO DE PRODUCTO
 
-let remeras = [];
-let gorras = [];
+let REMERAS = [];
+let GORRAS = [];
 
 function filtrarRemeras(){
-     remeras = productosDisponibles.filter( (pro) => {
+     REMERAS = productosDisponibles.filter( (pro) => {
     return pro.tipo === "remera"
 })}
 
 function filtrarGorras(){
-    gorras = productosDisponibles.filter( (pro) => {
+    GORRAS = productosDisponibles.filter( (pro) => {
    return pro.tipo === "gorra"
 })}
 
 ///REVISA LOS COLORES DE CADA ARTICULO
 //Y CREA UN STRING QUE LOS CONTIENE
-let coloresDisponibles = [];
+let COLORES_DISPONIBLES = [];
 
 let colores = "";
 
 function mostrarColoresRemeras() {
     if (colores === ""){         ///evita que en la segunda compra se repitan los colores
-    remeras.forEach(reme =>{
-        return coloresDisponibles.push(reme.color);
+    REMERAS.forEach(reme =>{
+        return COLORES_DISPONIBLES.push(reme.color);
     })
-    let ulti = coloresDisponibles.pop();
-    colores  = coloresDisponibles.join(', ') + ' y ' + ulti;
+    let ulti = COLORES_DISPONIBLES.pop();
+    colores  = COLORES_DISPONIBLES.join(', ') + ' y ' + ulti;
     return colores;
     }else {
         return colores               
@@ -69,11 +69,11 @@ function mostrarColoresRemeras() {
 }
 function mostrarColoresGorras() {
     if (colores === ""){
-    gorras.forEach(gorra =>{
-        return coloresDisponibles.push(gorra.color);
+    GORRAS.forEach(gorra =>{
+        return COLORES_DISPONIBLES.push(gorra.color);
     })
-    let ulti = coloresDisponibles.pop();
-    colores  = coloresDisponibles.join(', ') + ' y ' + ulti;
+    let ulti = COLORES_DISPONIBLES.pop();
+    colores  = COLORES_DISPONIBLES.join(', ') + ' y ' + ulti;
     return colores;
     }else {
         return colores
@@ -85,15 +85,22 @@ function mostrarColoresGorras() {
 
 let colorElegido;
 let cantidad;
+let precio;
 
 function colorYCantidad() {
     colorElegido = prompt (`los colores disponibles son ${colores}, ¿cuál quieres llevar?`);
+
+    colorDisponible = COLORES_DISPONIBLES.includes(colorElegido);
+    while(colorDisponible == false){     ///vuelve a preguntar si el color ingresado no existe
+        alert('El color que elegiste no está disponible, vuelve a interlo')
+        colorYCantidad();
+    }
+
     cantidad = prompt('¿Cuántas quieres?');
 }
 
 //SIMULADOR DE COMPRA(LLAMADO DE FUNCIONES)
 function simularCompra(){
-    carrito = []; //en caso de volver al inicio, se resetea el carrito para que su método funcione correctamente
     alert('Bienvenido a outlove. Tenemos indumentaria pensada para vos.')
     let eleccion = prompt('¿Quieres ver remeras o gorras?')
     if(eleccion === "remeras"){
@@ -117,9 +124,11 @@ function simularCompra(){
     alert(`estás comprando ${cantidad} ${eleccion}/s de color ${colorElegido}, puedes añadir más productos al finalizar esta compra`)
     dire = prompt('¿A dónde deberíamos enviartelo?')
     if(eleccion === "gorra"){
-        precio = gorras[0].precio * cantidad
+        objetoElegido = GORRAS.find((gorra) => gorra.color == colorElegido)
+        precio = objetoElegido.precio;
         }else{
-        precio = remeras[0].precio * cantidad
+        objetoElegido =  REMERAS.find((reme) => reme.color == colorElegido)
+        precio = objetoElegido.precio
     }
     carrito.push(new Pedido(eleccion, cantidad, colorElegido, precio, dire))
     carrito[0].mostrar();
