@@ -92,12 +92,17 @@ function colorYCantidad() {
 
     colorDisponible = COLORES_DISPONIBLES.includes(colorElegido);
     while(colorDisponible == false){     ///vuelve a preguntar si el color ingresado no existe
-        alert('El color que elegiste no está disponible, vuelve a interlo')
+        repreguntarColor = confirm('El color que elegiste no está disponible, ¿quieres volver a ver las opciones?')
+        if (preguntarColor){
         colorYCantidad();
+        }else {
+            alert('¡Vuelve a visitarnos pronto!')
+        }
     }
 
     cantidad = prompt('¿Cuántas quieres?');
 }
+
 
 //SIMULADOR DE COMPRA(LLAMADO DE FUNCIONES)
 function simularCompra(){
