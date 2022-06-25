@@ -51,33 +51,29 @@ function filtrarGorras(){
 
 ///REVISA LOS COLORES DE CADA ARTICULO
 //Y CREA UN STRING QUE LOS CONTIENE
-let COLORES_DISPONIBLES = [];
+let COLORES_DISPONIBLES;
 
 let colores = "";
 
 function mostrarColoresRemeras() {
-    if (colores === ""){         ///evita que en la segunda compra se repitan los colores
+    COLORES_DISPONIBLES = [];
     REMERAS.forEach(reme =>{
         return COLORES_DISPONIBLES.push(reme.color);
     })
     let ulti = COLORES_DISPONIBLES.pop();
     colores  = COLORES_DISPONIBLES.join(', ') + ' y ' + ulti;
     return colores;
-    }else {
-        return colores               
-    }
+   
 }
 function mostrarColoresGorras() {
-    if (colores === ""){
+    COLORES_DISPONIBLES = [];
     GORRAS.forEach(gorra =>{
         return COLORES_DISPONIBLES.push(gorra.color);
     })
     let ulti = COLORES_DISPONIBLES.pop();
     colores  = COLORES_DISPONIBLES.join(', ') + ' y ' + ulti;
     return colores;
-    }else {
-        return colores
-    }
+    
 }
 
 //ASIGNA VALORES DEL COLOR Y CANTIDAD
@@ -89,17 +85,6 @@ let precio;
 
 function colorYCantidad() {
     colorElegido = prompt (`los colores disponibles son ${colores}, ¿cuál quieres llevar?`);
-
-    colorDisponible = COLORES_DISPONIBLES.includes(colorElegido);
-    while(colorDisponible == false){     ///vuelve a preguntar si el color ingresado no existe
-        repreguntarColor = confirm('El color que elegiste no está disponible, ¿quieres volver a ver las opciones?')
-        if (repreguntarColor){
-        colorYCantidad();
-        }else {
-            alert('¡Vuelve a visitarnos pronto!')
-        }
-    }
-
     cantidad = prompt('¿Cuántas quieres?');
 }
 
@@ -137,6 +122,7 @@ function simularCompra(){
     }
     carrito.push(new Pedido(eleccion, cantidad, colorElegido, precio, dire))
     carrito[0].mostrar();
+
     let continuar = confirm('Quieres seguir comprando?')
     if(continuar){
         simularCompra();
