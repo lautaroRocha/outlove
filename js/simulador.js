@@ -73,13 +73,12 @@ function mostrarColores(arr) {
 
 //ASIGNA VALORES DEL COLOR Y CANTIDAD
 //ELEGIDOS POR EL USUARIO
-
 let colorElegido;
 let cantidad;
 let precio;
 let colorDisponible; 
 
-function color() {
+function pedirColor() {
     colorElegido = prompt (`los colores disponibles son ${colores}, ¿cuál quieres llevar?`);
     COLORES_DISPONIBLES.push(ulti);
     colorDisponible = COLORES_DISPONIBLES.includes(colorElegido);
@@ -93,7 +92,18 @@ function pedirCantidad(){
     cantidad = prompt('¿Cuántas quieres?');
 }
 
+//MUESTRA EL OBJETO EN EL CARRITO
 
+
+//OFRECE VOLVER A COMPRAR
+function finCompra(){
+    let continuar = confirm('Quieres seguir comprando?')
+    if(continuar){
+        simularCompra();
+    }else {
+        alert('¡Gracias por tu compra!')
+    }
+}
 
 //SIMULADOR DE COMPRA(LLAMADO DE FUNCIONES)
 function simularCompra(){
@@ -103,13 +113,13 @@ function simularCompra(){
         eleccion = "remera"
         filtrarRemeras();
         mostrarColores(REMERAS);
-        color();
+        pedirColor();
         pedirCantidad()
     }else if (eleccion ==="gorras") {
         eleccion = "gorra"
         filtrarGorras();
         mostrarColores(GORRAS);
-        color();
+        pedirColor();
         pedirCantidad();
     }else {
         conti = confirm('Algo salio mal, ¿quieres seguir comprando?')
@@ -119,11 +129,8 @@ function simularCompra(){
             return
         }
     }
-  
-
-    alert(`estás comprando ${cantidad} ${eleccion}/s de color ${colorElegido}, puedes añadir más productos al finalizar esta compra`)
+    alert(`Seleccionaste ${cantidad} ${eleccion}/s de color ${colorElegido}`)
     dire = prompt('¿A dónde deberíamos enviartelo?')
-
     if(eleccion === "gorra"){
         objetoElegido = GORRAS.find((gorra) => gorra.color == colorElegido)
         precio = objetoElegido.precio;
@@ -131,15 +138,9 @@ function simularCompra(){
         objetoElegido =  REMERAS.find((reme) => reme.color == colorElegido)
         precio = objetoElegido.precio
     }
-
     carrito.push(new Pedido(eleccion, cantidad, colorElegido, precio, dire))
     carrito[0].mostrar();
-    let continuar = confirm('Quieres seguir comprando?')
-    if(continuar){
-        simularCompra();
-    }else {
-        alert('¡Gracias por tu compra!')
-    }
+    finCompra();
 }
 
 
