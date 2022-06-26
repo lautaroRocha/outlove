@@ -51,30 +51,25 @@ function filtrarGorras(){
 
 ///REVISA LOS COLORES DE CADA ARTICULO
 //Y CREA UN STRING QUE LOS CONTIENE
+
 let COLORES_DISPONIBLES;
 
 let colores = "";
 
-function mostrarColoresRemeras() {
+let ulti;
+
+function mostrarColores(arr) {
     COLORES_DISPONIBLES = [];
-    REMERAS.forEach(reme =>{
-        return COLORES_DISPONIBLES.push(reme.color);
-    })
-    let ulti = COLORES_DISPONIBLES.pop();
+    ulti = "";
+    arr.forEach(reme =>{
+        return COLORES_DISPONIBLES.push(reme.color)
+        })
+    ulti = COLORES_DISPONIBLES.pop();
     colores  = COLORES_DISPONIBLES.join(', ') + ' y ' + ulti;
     return colores;
    
 }
-function mostrarColoresGorras() {
-    COLORES_DISPONIBLES = [];
-    GORRAS.forEach(gorra =>{
-        return COLORES_DISPONIBLES.push(gorra.color);
-    })
-    let ulti = COLORES_DISPONIBLES.pop();
-    colores  = COLORES_DISPONIBLES.join(', ') + ' y ' + ulti;
-    return colores;
-    
-}
+
 
 //ASIGNA VALORES DEL COLOR Y CANTIDAD
 //ELEGIDOS POR EL USUARIO
@@ -82,11 +77,22 @@ function mostrarColoresGorras() {
 let colorElegido;
 let cantidad;
 let precio;
+let colorDisponible; 
 
-function colorYCantidad() {
+function color() {
     colorElegido = prompt (`los colores disponibles son ${colores}, ¿cuál quieres llevar?`);
+    COLORES_DISPONIBLES.push(ulti);
+    colorDisponible = COLORES_DISPONIBLES.includes(colorElegido);
+    while(colorDisponible === false){
+        alert('El color elegido no está disponble, prueba de nuevo')
+        color();
+    }
+}
+
+function pedirCantidad(){
     cantidad = prompt('¿Cuántas quieres?');
 }
+
 
 
 //SIMULADOR DE COMPRA(LLAMADO DE FUNCIONES)
@@ -96,13 +102,15 @@ function simularCompra(){
     if(eleccion === "remeras"){
         eleccion = "remera"
         filtrarRemeras();
-        mostrarColoresRemeras();
-        colorYCantidad();
+        mostrarColores(REMERAS);
+        color();
+        pedirCantidad()
     }else if (eleccion ==="gorras") {
         eleccion = "gorra"
         filtrarGorras();
-        mostrarColoresGorras();
-        colorYCantidad();
+        mostrarColores(GORRAS);
+        color();
+        pedirCantidad();
     }else {
         conti = confirm('Algo salio mal, ¿quieres seguir comprando?')
         if (conti){
@@ -111,8 +119,11 @@ function simularCompra(){
             return
         }
     }
+  
+
     alert(`estás comprando ${cantidad} ${eleccion}/s de color ${colorElegido}, puedes añadir más productos al finalizar esta compra`)
     dire = prompt('¿A dónde deberíamos enviartelo?')
+
     if(eleccion === "gorra"){
         objetoElegido = GORRAS.find((gorra) => gorra.color == colorElegido)
         precio = objetoElegido.precio;
@@ -120,9 +131,9 @@ function simularCompra(){
         objetoElegido =  REMERAS.find((reme) => reme.color == colorElegido)
         precio = objetoElegido.precio
     }
+
     carrito.push(new Pedido(eleccion, cantidad, colorElegido, precio, dire))
     carrito[0].mostrar();
-
     let continuar = confirm('Quieres seguir comprando?')
     if(continuar){
         simularCompra();
