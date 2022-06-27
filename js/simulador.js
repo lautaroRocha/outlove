@@ -108,7 +108,7 @@ function finCompra(){
 //SIMULADOR DE COMPRA(LLAMADO DE FUNCIONES)
 function simularCompra(){
     alert('Bienvenido a outlove. Tenemos indumentaria pensada para vos.')
-    let eleccion = prompt('¿Quieres ver remeras o gorras?');
+    let eleccion = prompt('¿Quieres ver remeras o gorras?').toLowerCase();
     if(eleccion == "remeras"){
         eleccion = "remera"
         filtrarRemeras();
