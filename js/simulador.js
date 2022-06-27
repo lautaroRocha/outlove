@@ -108,14 +108,14 @@ function finCompra(){
 //SIMULADOR DE COMPRA(LLAMADO DE FUNCIONES)
 function simularCompra(){
     alert('Bienvenido a outlove. Tenemos indumentaria pensada para vos.')
-    let eleccion = prompt('¿Quieres ver remeras o gorras?').toLowerCase;
-    if(eleccion === "remeras"){
+    let eleccion = prompt('¿Quieres ver remeras o gorras?');
+    if(eleccion == "remeras"){
         eleccion = "remera"
         filtrarRemeras();
         mostrarColores(REMERAS);
         pedirColor();
         pedirCantidad()
-    }else if (eleccion ==="gorras") {
+    }else if (eleccion =="gorras") {
         eleccion = "gorra"
         filtrarGorras();
         mostrarColores(GORRAS);
@@ -138,6 +138,7 @@ function simularCompra(){
         objetoElegido =  REMERAS.find((reme) => reme.color == colorElegido)
         precio = objetoElegido.precio
     }
+    carrito = [];
     carrito.push(new Pedido(eleccion, cantidad, colorElegido, precio, dire))
     carrito[0].mostrar();
     finCompra();
