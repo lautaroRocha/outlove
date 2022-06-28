@@ -1,5 +1,5 @@
 .cabecera {
-    background-color: $verOsc;
+    background-color: var(--verOsc);
     height: 2rem;
     width: 100%;
     padding: 1rem;
@@ -19,7 +19,7 @@
     }
 }
 .cabecera-clara {
-    background-color: $ver;
+    background-color: var(--ver);
     height: 7rem;
     display: flex;
     justify-content: flex-end;
@@ -36,10 +36,10 @@
             color: #fff;
             font-weight: bold;
             &:hover{
-                color: $amaCla;
+                color: var(--amaCla);
             }
             &:active{
-                text-shadow: 0 0 5px $verOsc;
+                text-shadow: 0 0 5px var(--verOsc);
             }
            }
        }

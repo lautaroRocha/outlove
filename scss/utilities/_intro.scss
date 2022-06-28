@@ -33,7 +33,7 @@
         width: 15vw;
         height: 15vw;
         border-radius: 100%;
-        background-color: $ama;
+        background-color: var(--ama);
         z-index: 2;
         text-align:center;
         line-height: clamp(2rem, 12vw, 6rem);
@@ -84,7 +84,7 @@
         span{
             display: inline-block;
             color: #fff;
-            background-color: $ama;
+            background-color: var(--ama);
             padding: 2px;
             &:first-of-type{
                 transform: skew(-3deg, -3deg);
