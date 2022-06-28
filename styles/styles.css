@@ -1,6 +1,6 @@
 .cabecera {
   background-color: #009423;
-  height: 6vh;
+  height: 2rem;
   width: 100%;
   padding: 1rem;
   position: fixed;
@@ -17,7 +17,7 @@
 
 .cabecera-clara {
   background-color: #00c652;
-  height: 20vh;
+  height: 7rem;
   display: flex;
   justify-content: flex-end; }
   .cabecera-clara ul {
@@ -120,18 +120,18 @@
 
 @media (min-width: 850px) {
   .inicio-carrusel {
-    margin: 0 auto; }
+    margin: 0 auto;
+    max-width: 1400px; }
     .inicio-carrusel h1 {
-      margin-right: 20vw;
-      padding: .5rem; }
+      padding: .5rem;
+      right: 280px; }
     .inicio-carrusel img {
       width: 60%;
       max-width: 900px; }
     .inicio-carrusel .boton-next {
       width: 100px;
       height: 100px;
-      margin-top: -35vh;
-      margin-right: 15vw; }
+      right: 200px; }
       .inicio-carrusel .boton-next img {
         width: 100px;
         height: 100px; }
@@ -139,10 +139,11 @@
     margin: 10rem auto;
     width: 50%; }
     .inicio-copy img {
-      max-width: 300px; }
+      max-width: 250px; }
     .inicio-copy p {
       font-size: 1.5rem;
-      line-height: rem; }
+      line-height: rem;
+      max-width: 600px; }
     .inicio-copy span {
       font-size: 2rem;
       padding: 5px; }

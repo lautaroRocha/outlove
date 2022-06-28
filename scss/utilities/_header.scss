@@ -1,6 +1,6 @@
 .cabecera {
     background-color: $verOsc;
-    height: 6vh;
+    height: 2rem;
     width: 100%;
     padding: 1rem;
     position: fixed;
@@ -20,7 +20,7 @@
 }
 .cabecera-clara {
     background-color: $ver;
-    height: 20vh;
+    height: 7rem;
     display: flex;
     justify-content: flex-end;
     ul {

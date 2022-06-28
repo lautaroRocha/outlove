@@ -85,7 +85,6 @@ for (let i=0; i<productos.length; i++) {
     nuevaFoto.addEventListener('click', actualizarNombre)
 };
 
-
 function enviarAlCarrito() {
     let talle = document.querySelector("#talle").value;
     let cantidad = document.querySelector("#canti").value;
