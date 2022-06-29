@@ -33,7 +33,7 @@
         width: 15vw;
         height: 15vw;
         border-radius: 100%;
-        background-color: $ama;
+        background-color: var(--ama);
         z-index: 2;
         text-align:center;
         line-height: clamp(2rem, 12vw, 6rem);
@@ -59,7 +59,7 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    margin: 10vh auto;
+    margin: 4.5rem auto;
     position: relative;
     .inicio-copy-fondo{
         position: absolute;
@@ -69,10 +69,16 @@
         align-self: center;
         width: 100%;
         margin: 0;
-        img{
+        .fondo-hojas-claro{
             filter: invert(91%) sepia(66%) saturate(645%) hue-rotate(57deg) brightness(102%) contrast(96%);
             height: auto;
-            width: 25vw;}
+            width: 25vw;
+        }
+        .fondo-hojas-osc{
+            filter: invert(10%) sepia(68%) saturate(3707%) hue-rotate(293deg) brightness(109%);
+            height: auto;
+            width: 25vw;
+        }
     }
     .inicio-copy-texto{
         display: flex;
@@ -81,10 +87,11 @@
         width: 80%;
         font-weight: 800;
         line-height: 1.5rem;
+        color: var(--texto);
         span{
             display: inline-block;
             color: #fff;
-            background-color: $ama;
+            background-color: var(--ama);
             padding: 2px;
             &:first-of-type{
                 transform: skew(-3deg, -3deg);
