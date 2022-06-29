@@ -6,6 +6,7 @@
     position: fixed;
     z-index: 4;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     span {
         a{
@@ -17,7 +18,15 @@
         font-size: 2rem;
         }
     }
-}
+    img{
+        height: 1.5rem;
+        filter: invert(90%) sepia(93%) saturate(465%) hue-rotate(358deg) brightness(105%) contrast(104%); 
+        &:hover{
+            cursor: pointer;
+           -webkit-drop-shadow: 0px 0px 5px #fff;
+        }
+        }
+    }
 .cabecera-clara {
     background-color: var(--ver);
     height: 7rem;
