@@ -124,8 +124,12 @@
     align-self: center;
     width: 100%;
     margin: 0; }
-    .inicio-copy .inicio-copy-fondo img {
+    .inicio-copy .inicio-copy-fondo .fondo-hojas-claro {
       filter: invert(91%) sepia(66%) saturate(645%) hue-rotate(57deg) brightness(102%) contrast(96%);
+      height: auto;
+      width: 25vw; }
+    .inicio-copy .inicio-copy-fondo .fondo-hojas-osc {
+      filter: invert(84%) sepia(32%) saturate(7447%) hue-rotate(259deg) brightness(96%) contrast(95%);
       height: auto;
       width: 25vw; }
   .inicio-copy .inicio-copy-texto {
