@@ -59,7 +59,7 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    margin: 10vh auto;
+    margin: 15vh auto 10vh;
     position: relative;
     .inicio-copy-fondo{
         position: absolute;
@@ -75,7 +75,7 @@
             width: 25vw;
         }
         .fondo-hojas-osc{
-            filter: invert(84%) sepia(32%) saturate(7447%) hue-rotate(259deg) brightness(96%) contrast(95%);
+            filter: invert(10%) sepia(68%) saturate(3707%) hue-rotate(293deg) brightness(109%);
             height: auto;
             width: 25vw;
         }
@@ -87,6 +87,7 @@
         width: 80%;
         font-weight: 800;
         line-height: 1.5rem;
+        color: var(--texto);
         span{
             display: inline-block;
             color: #fff;

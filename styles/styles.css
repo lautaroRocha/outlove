@@ -5,7 +5,8 @@
   --ama: #ffd600;
   --amaCla: #ffff52;
   --amaOsc: #;
-  --bg: #fff; }
+  --bg: #fff;
+  --texto: #000; }
 
 .dark {
   --ver: #900060;
@@ -14,7 +15,8 @@
   --ama: #ffd600;
   --amaCla: #ffff52;
   --amaOsc: #c7a500;
-  --bg: #333; }
+  --bg: #333;
+  --texto: #fff; }
 
 .cabecera {
   background-color: var(--verOsc);
@@ -114,7 +116,7 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  margin: 10vh auto;
+  margin: 15vh auto 10vh;
   position: relative; }
   .inicio-copy .inicio-copy-fondo {
     position: absolute;
@@ -129,7 +131,7 @@
       height: auto;
       width: 25vw; }
     .inicio-copy .inicio-copy-fondo .fondo-hojas-osc {
-      filter: invert(84%) sepia(32%) saturate(7447%) hue-rotate(259deg) brightness(96%) contrast(95%);
+      filter: invert(10%) sepia(68%) saturate(3707%) hue-rotate(293deg) brightness(109%);
       height: auto;
       width: 25vw; }
   .inicio-copy .inicio-copy-texto {
@@ -138,7 +140,8 @@
     .inicio-copy .inicio-copy-texto p {
       width: 80%;
       font-weight: 800;
-      line-height: 1.5rem; }
+      line-height: 1.5rem;
+      color: var(--texto); }
       .inicio-copy .inicio-copy-texto p span {
         display: inline-block;
         color: #fff;
@@ -231,7 +234,8 @@ footer {
         border-radius: 5px;
         font-weight: 800;
         padding: .5rem;
-        margin: .5rem; }
+        margin: .5rem;
+        background-color: #c3c3c3; }
         .tienda .tienda-uno .tienda-control button:hover {
           cursor: pointer;
           background-color: var(--amaCla); }
