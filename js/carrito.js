@@ -69,7 +69,7 @@ function actualizarNombre() {
         nombreProducto.textContent = "remera montaña negra blanca";
         break;
         default : 
-        nombreProducto.textContent = "producto";
+        nombreProducto.textContent = "";
     }
     }
 
@@ -85,33 +85,48 @@ for (let i=0; i<productos.length; i++) {
     nuevaFoto.addEventListener('click', actualizarNombre)
 };
 
-function enviarAlCarrito() {
-    let talle = document.querySelector("#talle").value;
-    let cantidad = document.querySelector("#canti").value;
-    let observaciones = document.querySelector("#obs").value;
-    let cliente = document.querySelector("#cliente").value;
-    let direccion = document.querySelector("#direccion").value;
-
-    carrito.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`));
-
-    //DOM del carrito
-
+///muestra el total de 
+//productos pedidos en el carrito
+function sumarCantidad() {
+    cantidadCompra.textContent = carrito.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
+}
+//envía img seleccionada al
+//carrito
+function llenarCarrito(){
     let divFotos = document.querySelector("#carrito-flex")
     
     let imagenCompra = document.createElement('img')
 
     imagenCompra.setAttribute('src', productoSeleccionado.getAttribute('src'));
    
-    divFotos.appendChild(imagenCompra);
+    divFotos.appendChild(imagenCompra); 
+}
+//envia los datos del form
+//al carrit
+function enviarAlCarrito() {
+    let talle = document.querySelector("#talle").value;
+    let cantidad = document.querySelector("#canti").value;
+    let observaciones = document.querySelector("#obs").value;
+    let cliente = document.querySelector("#cliente").value;
+    let direccion = document.querySelector("#direccion").value;
+    
+    ///evita que se envíe un pedido
+    ///sin producto
+    if(nombreProducto.innerText !== ""){
+        carrito.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`));
+        sumarCantidad();
+    }else{
+            alert('Aún no has seleccionado ningún producto')
+        } ;
+    
+    llenarCarrito();
 
-    sumarCantidad()
 }
 
-function sumarCantidad() {
-    cantidadCompra.textContent = carrito.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
-}
 
-botonAnadir.addEventListener('click', enviarAlCarrito)
+let btnAnadir = document.querySelector('#anadir-carrito');
+
+btnAnadir.addEventListener('click', enviarAlCarrito);
 
 botonModal.onclick = function() {
     carritoModal.style.display = "block";
