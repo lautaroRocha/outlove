@@ -53,7 +53,7 @@
     <section id="tienda">
       <div class="tienda">
        <div class="tienda-uno">
-        <form onsubmit="return false">
+        <form onsubmit="return false" id="forma-cliente">
            <div class="tienda-control">
              <label for="talle">Talle:</label>
              <select required name="talle" id="talle">
@@ -74,7 +74,7 @@
           
              
              <label for="obs">Observaciones:</label>
-             <input required type="text" id="obs">
+             <input type="text" id="obs">
           
              <button type="submit" id="anadir-carrito">Añadir al carrito</button>
              <button id="boton-modal"> Ver carrito </button>
@@ -92,8 +92,7 @@
        </div>
         <div class="tienda-dos">
           <div class="tienda-seleccion">
-            <span class="seleccion-modelo" id="producto-seleccion-nombre"> 
-            </span>
+            <span class="seleccion-modelo" id="producto-seleccion-nombre"> </span>
             <img id="producto-seleccion" src="" alt="">
           </div>
           <div class="tienda-fotos">
