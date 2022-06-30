@@ -1,6 +1,21 @@
-$ver : #00c652; 
-$verCla : #5efa81;
-$verOsc : #009423;
-$ama : #ffd600;
-$amaCla : #ffff52;
-$amaOsc : #c7a500;
+.light {
+    --ver : #00c652; 
+    --verCla : #5efa81;
+    --verOsc : #009423;
+    --ama : #ffd600;
+    --amaCla : #ffff52;
+    --amaOsc : #;
+    --bg : #fff;
+    --texto : #000;
+}
+
+.dark {
+    --ver : #900060; 
+    --verCla : #ef6fea;
+    --verOsc : #740f66;
+    --ama : #ffd600;
+    --amaCla : #ffff52;
+    --amaOsc : #c7a500;
+    --bg : #333;
+    --texto: #fff;
+}

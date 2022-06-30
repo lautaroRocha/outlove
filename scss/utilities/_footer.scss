@@ -4,17 +4,17 @@ footer {
     bottom: 0;
     width: 100vw;
     height: 30vh;
-    background-color: $verCla;
+    background-color: var(--verCla);
     .foot {
        display: flex;
        height: 100%;
        flex-direction: row-reverse;
        .shade {
-           background-color: $verOsc;
+           background-color: var(--verOsc);
            width: 40%;
        }
        .shader {
-           background-color: $ver;
+           background-color: var(--ver);
            width: 30%;
        }
     }
