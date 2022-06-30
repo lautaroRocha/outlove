@@ -1,4 +1,3 @@
-
 //Clase del objeto del carrito
 class Pedido {
     constructor(cliente, direccion, producto, cantidad, talle, observaciones){
@@ -29,6 +28,7 @@ const filtroSeleccion = document.querySelector("#filtro");
 
 //Productos disponibles
 const PRODUCTOS = [];
+{
 PRODUCTOS.push(remeraNegraMontaña = new Producto("remera", "remera negra montaña",  1700, "images/remera1.png"));
 PRODUCTOS.push(remeraBlancaMontaña = new Producto("remera", "remera blanca montaña", 1700, "images/remera2.png"));
 PRODUCTOS.push(remeraCaminante = new Producto("remera", "remera caminante", 1700, "images/remera3.png"));
@@ -41,6 +41,7 @@ PRODUCTOS.push(botaNegraAlta = new Producto("calzado", "bota negra alta", 4000, 
 PRODUCTOS.push(gorroAustraliano = new Producto("gorro", "gorro australiano", 2000, "images/hat1.png"))
 PRODUCTOS.push(gorraMontana = new Producto("gorro", "gorra montana", 1500, "images/hat2.png"));
 PRODUCTOS.push(gorroFrio = new Producto("gorro", "gorro invierno", 4000, "images/hat3.png"))
+}
 //carrito
 let datosClientes = document.querySelector("#forma-cliente")
 const botonAnadir = document.querySelector("#anadir-carrito");
@@ -59,75 +60,48 @@ let btnEliminar = document.querySelector('#eli-prod');
 function actualizarNombre() {
     objetoElegido = PRODUCTOS.find(prod => prod.link == productoSeleccionado.getAttribute('src'))
     nombreProducto.textContent = objetoElegido.modelo;
+}
 
-   /*switch (productoSeleccionado.getAttribute('src')){
-        case "images/remera1.png":
-        nombreProducto.textContent = "remera negra";
-        break;
-        case "images/remera2.png":
-        nombreProducto.textContent = "remera blanca";
-        break;
-        case "images/remera3.png":
-        nombreProducto.textContent = "remera caminante";
-        break;
-        case "images/remera4.png":
-        nombreProducto.textContent = "remera emblema";
-        break;
-        case "images/remera5.png":
-        nombreProducto.textContent = "remera caminante blanca";
-        break;
-        case "images/remera6.png":
-        nombreProducto.textContent = "remera montaña negra blanca";
-        break;
-        default : 
-        nombreProducto.textContent = "";
-      
-    }*/
-    }
- 
 //Crea las cards
 //de los productos repasando
 //el array
 
 function filtrar(){
-
-if (filtroSeleccion.value == "todo"){
-    fotosProductos.innerHTML = "";
-    nombreProducto.textContent = "";
-    productoSeleccionado.setAttribute('src', "")
-    for (let i=0; i < PRODUCTOS.length; i++) {
+    if (filtroSeleccion.value == "todo"){
+        limpiarSeleccion();
+        crearCards(PRODUCTOS)
+    }else {
+        limpiarSeleccion();
+        PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == filtroSeleccion.value);
+        crearCards(PRODUCTOS_FILTRADOS)
+    }
+}
+function crearCards(arr){
+    for (let i=0; i < arr.length; i++) {
         let nuevaFoto = document.createElement('img');
-        nuevaFoto.setAttribute('src', PRODUCTOS[i].link);
+        nuevaFoto.setAttribute('src', arr[i].link);
         fotosProductos.appendChild(nuevaFoto);
         nuevaFoto.addEventListener('click', () => 
-        productoSeleccionado.setAttribute('src' , PRODUCTOS[i].link))
-        nuevaFoto.addEventListener('click', actualizarNombre)
-    }   
-}else {
-    fotosProductos.innerHTML = ""; 
-    nombreProducto.textContent = "";
-    productoSeleccionado.setAttribute('src', "")
-    PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == filtroSeleccion.value);
-    for (let i=0; i < PRODUCTOS_FILTRADOS.length; i++) {
-        let nuevaFoto = document.createElement('img');
-        nuevaFoto.setAttribute('src', PRODUCTOS_FILTRADOS[i].link);
-        fotosProductos.appendChild(nuevaFoto);
-        nuevaFoto.addEventListener('click', () => 
-        productoSeleccionado.setAttribute('src' , PRODUCTOS_FILTRADOS[i].link))
+        productoSeleccionado.setAttribute('src' , arr[i].link))
         nuevaFoto.addEventListener('click', actualizarNombre)
     }
 }
+function limpiarSeleccion(){   
+    fotosProductos.innerHTML = "";
+    nombreProducto.textContent = "";
+    productoSeleccionado.setAttribute('src', "")
 }
-
 
 ///muestra el total de 
 //productos pedidos en el carrito
+
 function sumarCantidad() {
     cantidadCompra.textContent = carrito.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
 }
 
 //envía img seleccionada al
 //carrito
+
 function llenarCarrito(){
     let imagenCompra = document.createElement('img')
     imagenCompra.setAttribute('src', productoSeleccionado.getAttribute('src'));
@@ -136,13 +110,13 @@ function llenarCarrito(){
 
 //envia los datos del form
 //al carrit
+
 function enviarAlCarrito() {
     let talle = document.querySelector("#talle").value;
     let cantidad = document.querySelector("#canti").value;
     let observaciones = document.querySelector("#obs").value;
     let cliente = document.querySelector("#cliente").value;
     let direccion = document.querySelector("#direccion").value;
-    
     ///evita que se envíe un pedido
     ///sin producto
     if(nombreProducto.innerText !== ""){
@@ -151,22 +125,20 @@ function enviarAlCarrito() {
     }else{
             alert('Aún no has seleccionado ningún producto')
         } ;
-    
     llenarCarrito();
-
 }
 
 ///enviar datos
 datosClientes.addEventListener('submit', enviarAlCarrito);
 
 //botones del modal
-botonModal.onclick = function() {
+botonModal.onclick =() => {
     carritoModal.style.display = "block";
   }
-botonCerrarModal.onclick = function() {
+botonCerrarModal.onclick = () => {
     carritoModal.style.display = "none";
 }
-btnEliminar.onclick = function (){
+btnEliminar.onclick = () =>{
     carrito.pop()
     divFotos.removeChild(divFotos.lastChild)
     sumarCantidad()
