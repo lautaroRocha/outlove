@@ -93,6 +93,8 @@ function filtrar(){
 
 if (filtroSeleccion.value == "todo"){
     fotosProductos.innerHTML = "";
+    nombreProducto.textContent = "";
+    productoSeleccionado.setAttribute('src', "")
     for (let i=0; i < PRODUCTOS.length; i++) {
         let nuevaFoto = document.createElement('img');
         nuevaFoto.setAttribute('src', PRODUCTOS[i].link);
@@ -103,6 +105,8 @@ if (filtroSeleccion.value == "todo"){
     }   
 }else {
     fotosProductos.innerHTML = ""; 
+    nombreProducto.textContent = "";
+    productoSeleccionado.setAttribute('src', "")
     PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == filtroSeleccion.value);
     for (let i=0; i < PRODUCTOS_FILTRADOS.length; i++) {
         let nuevaFoto = document.createElement('img');
