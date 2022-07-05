@@ -13,7 +13,7 @@ let bodyTag = document.querySelector("body");
 
  botonMode.onclick = () => {
     modo = bodyTag.getAttribute('class');
-    if (modo == "light" || modo == " "){
+    if (modo == "light"){
         localStorage.setItem('mode', "dark")
         bodyTag.setAttribute('class', 'dark')
         hojasCopy.forEach( hoja => hoja.setAttribute('class', 'fondo-hojas-osc'))
