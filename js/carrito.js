@@ -26,6 +26,7 @@ const productoSeleccionado = document.querySelector('#producto-seleccion');
 const fotosProductos = document.querySelector('.tienda-fotos');
 const filtroSeleccion = document.querySelector("#filtro");
 
+
 //Productos disponibles
 const PRODUCTOS = [];
 {
