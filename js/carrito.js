@@ -67,16 +67,31 @@ function actualizarNombre() {
 //de los productos repasando
 //el array
 
+let filtroGuardado = localStorage.getItem('filtro');
+
 function filtrar(){
-    if (filtroSeleccion.value == "todo"){
+        if (filtroSeleccion.value == "todo"){
+            limpiarSeleccion();
+            crearCards(PRODUCTOS);
+        }else {
+            limpiarSeleccion();
+            crearFiltrados(filtroSeleccion.value);
+            crearCards(PRODUCTOS_FILTRADOS)
+        }
+        localStorage.setItem('filtro', filtroSeleccion.value)
+}
+
+function filtroPredeter() {
         limpiarSeleccion();
-        crearCards(PRODUCTOS)
-    }else {
-        limpiarSeleccion();
-        PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == filtroSeleccion.value);
+        crearFiltrados(filtroGuardado);
         crearCards(PRODUCTOS_FILTRADOS)
     }
+
+function crearFiltrados(val){
+    PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == val);
 }
+
+
 function crearCards(arr){
     for (let i=0; i < arr.length; i++) {
         let nuevaFoto = document.createElement('img');
@@ -92,6 +107,7 @@ function limpiarSeleccion(){
     nombreProducto.textContent = "";
     productoSeleccionado.setAttribute('src', "")
 }
+
 
 ///muestra el total de 
 //productos pedidos en el carrito
@@ -144,5 +160,6 @@ btnEliminar.onclick = () =>{
     divFotos.removeChild(divFotos.lastChild)
     sumarCantidad()
 }
+filtroSeleccion.addEventListener('change', filtrar);
 
-filtroSeleccion.addEventListener('change', filtrar)
+filtroPredeter();
