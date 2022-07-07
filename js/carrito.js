@@ -43,6 +43,7 @@ PRODUCTOS.push(gorroAustraliano = new Producto("gorro", "gorro australiano", 200
 PRODUCTOS.push(gorraMontana = new Producto("gorro", "gorra montana", 1500, "images/hat2.png"));
 PRODUCTOS.push(gorroFrio = new Producto("gorro", "gorro invierno", 4000, "images/hat3.png"))
 }
+
 //carrito
 let datosClientes = document.querySelector("#forma-cliente")
 const botonAnadir = document.querySelector("#anadir-carrito");
@@ -67,15 +68,28 @@ function actualizarNombre() {
 //de los productos repasando
 //el array
 
+let filtroGuardado = localStorage.getItem('filtro');
+
 function filtrar(){
-    if (filtroSeleccion.value == "todo"){
+        if (filtroSeleccion.value == "todo"){
+            limpiarSeleccion();
+            crearCards(PRODUCTOS);
+        }else {
+            limpiarSeleccion();
+            crearFiltrados(filtroSeleccion.value);
+            crearCards(PRODUCTOS_FILTRADOS)
+        }
+        localStorage.setItem('filtro', filtroSeleccion.value)
+}
+
+function filtroPredeter() {
         limpiarSeleccion();
-        crearCards(PRODUCTOS)
-    }else {
-        limpiarSeleccion();
-        PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == filtroSeleccion.value);
+        crearFiltrados(filtroGuardado);
         crearCards(PRODUCTOS_FILTRADOS)
     }
+
+function crearFiltrados(val){
+    PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == val);
 }
 function crearCards(arr){
     for (let i=0; i < arr.length; i++) {
@@ -146,3 +160,5 @@ btnEliminar.onclick = () =>{
 }
 
 filtroSeleccion.addEventListener('change', filtrar)
+
+filtroPredeter();
