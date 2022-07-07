@@ -1,4 +1,4 @@
-import { preferenciaModo, botonMode, hojasCopy, bodyTag } from "./modules/var_darkmode.js"
+import { preferenciaModo, botonMode, hojasCopy, bodyTag } from "./modules/var_darkmode.js";
 
 //revisa si hay un modo preferido guardado
 window.onload = () => {
