@@ -9,7 +9,6 @@ class Pedido {
         this.observaciones = observaciones
     }
 }
-
 //Clase de los objetos a la venta
 class Producto {
     constructor(clase, modelo, precio,link){
@@ -47,7 +46,7 @@ PRODUCTOS.push(gorroFrio = new Producto("gorro", "gorro invierno", 4000, "images
 //carrito
 let datosClientes = document.querySelector("#forma-cliente")
 const botonAnadir = document.querySelector("#anadir-carrito");
-let carrito = [];
+let CARRITO = [];
 
 ///Modal del carrito
 
@@ -111,7 +110,7 @@ function limpiarSeleccion(){
 //productos pedidos en el carrito
 
 function sumarCantidad() {
-    cantidadCompra.textContent = carrito.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
+    cantidadCompra.textContent = CARRITO.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
 }
 
 //envía img seleccionada al
@@ -135,7 +134,7 @@ function enviarAlCarrito() {
     ///evita que se envíe un pedido
     ///sin producto
     if(nombreProducto.innerText !== ""){
-        carrito.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`));
+        CARRITO.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`));
         sumarCantidad();
     }else{
             alert('Aún no has seleccionado ningún producto')
@@ -154,7 +153,7 @@ botonCerrarModal.onclick = () => {
     carritoModal.style.display = "none";
 }
 btnEliminar.onclick = () =>{
-    carrito.pop()
+    CARRITO.pop()
     divFotos.removeChild(divFotos.lastChild)
     sumarCantidad()
 }
