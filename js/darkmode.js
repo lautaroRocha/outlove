@@ -1,7 +1,4 @@
-let preferenciaModo = localStorage.getItem('mode');
-let botonMode = document.querySelector("#btn-mode")
-let hojasCopy = document.querySelectorAll("#hoja")
-let bodyTag = document.querySelector("body");
+import { preferenciaModo, botonMode, hojasCopy, bodyTag } from "./modules/var_darkmode.js"
 
     if (preferenciaModo === "dark"){
         bodyTag.setAttribute('class', 'dark')
@@ -12,7 +9,7 @@ let bodyTag = document.querySelector("body");
     }
 
  botonMode.onclick = () => {
-    modo = bodyTag.getAttribute('class');
+    let modo = bodyTag.getAttribute('class');
     if (modo == "light"){
         localStorage.setItem('mode', "dark")
         bodyTag.setAttribute('class', 'dark')
