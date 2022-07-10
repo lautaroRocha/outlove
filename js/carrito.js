@@ -1,5 +1,3 @@
-
-
 //Clase del objeto del carrito
 class Pedido {
     constructor(cliente, direccion, producto, cantidad, talle, observaciones, link){
@@ -22,8 +20,6 @@ class Producto {
     }
 }
 
-
-
 //Display de productos y selección
 const nombreProducto = document.querySelector('#producto-seleccion-nombre');
 const productoSeleccionado = document.querySelector('#producto-seleccion');
@@ -32,8 +28,8 @@ const filtroSeleccion = document.querySelector("#filtro");
 
 
 //Productos disponibles
-const PRODUCTOS = [];
-
+let PRODUCTOS = [];
+{
 PRODUCTOS.push(remeraNegraMontaña = new Producto("remera", "remera negra montaña",  1700, "images/remera1.png"));
 PRODUCTOS.push(remeraBlancaMontaña = new Producto("remera", "remera blanca montaña", 1700, "images/remera2.png"));
 PRODUCTOS.push(remeraCaminante = new Producto("remera", "remera caminante", 1700, "images/remera3.png"));
@@ -46,7 +42,7 @@ PRODUCTOS.push(botaNegraAlta = new Producto("calzado", "bota negra alta", 4000, 
 PRODUCTOS.push(gorroAustraliano = new Producto("gorro", "gorro australiano", 2000, "images/hat1.png"))
 PRODUCTOS.push(gorraMontana = new Producto("gorro", "gorra montana", 1500, "images/hat2.png"));
 PRODUCTOS.push(gorroFrio = new Producto("gorro", "gorro invierno", 4000, "images/hat3.png"))
-
+}
 
 //carrito
 let datosClientes = document.querySelector("#forma-cliente")
@@ -119,7 +115,6 @@ function sumarCantidad() {
 
 //envía img seleccionada al
 //carrito
-
 function llenarCarrito(){
     let imagenCompra = document.createElement('img')
     CARRITO.forEach(pedido => imagenCompra.setAttribute('src', pedido.link))
@@ -148,6 +143,21 @@ function enviarAlCarrito() {
     localStorage.setItem('carrito', JSON.stringify(CARRITO));
 }
 
+//carga el carrito
+//desde el localStorage
+let pedidoGuardado = localStorage.getItem('carrito')
+
+function persistirCarrito(){
+    if (pedidoGuardado){
+    let imagenCompra = document.createElement('img')
+    let PEDIDO_GUARDADO = JSON.parse(pedidoGuardado);
+    PEDIDO_GUARDADO.forEach(pedido => imagenCompra.setAttribute('src', pedido.link))
+    divFotos.appendChild(imagenCompra)
+    
+    cantidadCompra.textContent = PEDIDO_GUARDADO.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
+    }
+}
+
 ///enviar datos
 datosClientes.addEventListener('submit', enviarAlCarrito);
 
@@ -167,3 +177,4 @@ btnEliminar.onclick = () =>{
 filtroSeleccion.addEventListener('change', filtrar)
 
 filtroPredeter();
+
