@@ -1,15 +1,15 @@
 //Clase del objeto del carrito
 class Pedido {
-    constructor(cliente, direccion, producto, cantidad, talle, observaciones){
+    constructor(cliente, direccion, producto, cantidad, talle, observaciones, link){
         this.cliente = cliente,
         this.direccion = direccion,
         this.producto = producto,
         this.cantidad = cantidad,
         this.talle = talle,
         this.observaciones = observaciones
+        this.link = link;
     }
 }
-
 //Clase de los objetos a la venta
 class Producto {
     constructor(clase, modelo, precio,link){
@@ -28,7 +28,7 @@ const filtroSeleccion = document.querySelector("#filtro");
 
 
 //Productos disponibles
-const PRODUCTOS = [];
+let PRODUCTOS = [];
 {
 PRODUCTOS.push(remeraNegraMontaña = new Producto("remera", "remera negra montaña",  1700, "images/remera1.png"));
 PRODUCTOS.push(remeraBlancaMontaña = new Producto("remera", "remera blanca montaña", 1700, "images/remera2.png"));
@@ -43,10 +43,10 @@ PRODUCTOS.push(gorroAustraliano = new Producto("gorro", "gorro australiano", 200
 PRODUCTOS.push(gorraMontana = new Producto("gorro", "gorra montana", 1500, "images/hat2.png"));
 PRODUCTOS.push(gorroFrio = new Producto("gorro", "gorro invierno", 4000, "images/hat3.png"))
 }
+
 //carrito
 let datosClientes = document.querySelector("#forma-cliente")
-const botonAnadir = document.querySelector("#anadir-carrito");
-let carrito = [];
+let CARRITO = [];
 
 ///Modal del carrito
 
@@ -67,15 +67,28 @@ function actualizarNombre() {
 //de los productos repasando
 //el array
 
+let filtroGuardado = localStorage.getItem('filtro');
+
 function filtrar(){
-    if (filtroSeleccion.value == "todo"){
+        if (filtroSeleccion.value == "todo"){
+            limpiarSeleccion();
+            crearCards(PRODUCTOS);
+        }else {
+            limpiarSeleccion();
+            crearFiltrados(filtroSeleccion.value);
+            crearCards(PRODUCTOS_FILTRADOS)
+        }
+        localStorage.setItem('filtro', filtroSeleccion.value)
+}
+
+function filtroPredeter() {
         limpiarSeleccion();
-        crearCards(PRODUCTOS)
-    }else {
-        limpiarSeleccion();
-        PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == filtroSeleccion.value);
+        crearFiltrados(filtroGuardado);
         crearCards(PRODUCTOS_FILTRADOS)
     }
+
+function crearFiltrados(val){
+    PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == val);
 }
 function crearCards(arr){
     for (let i=0; i < arr.length; i++) {
@@ -97,15 +110,14 @@ function limpiarSeleccion(){
 //productos pedidos en el carrito
 
 function sumarCantidad() {
-    cantidadCompra.textContent = carrito.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
+    cantidadCompra.textContent = CARRITO.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
 }
 
 //envía img seleccionada al
 //carrito
-
 function llenarCarrito(){
     let imagenCompra = document.createElement('img')
-    imagenCompra.setAttribute('src', productoSeleccionado.getAttribute('src'));
+    CARRITO.forEach(pedido => imagenCompra.setAttribute('src', pedido.link))
     divFotos.appendChild(imagenCompra); 
 }
 
@@ -121,12 +133,29 @@ function enviarAlCarrito() {
     ///evita que se envíe un pedido
     ///sin producto
     if(nombreProducto.innerText !== ""){
-        carrito.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`));
+        CARRITO.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`, 
+        productoSeleccionado.getAttribute('src')));
         sumarCantidad();
     }else{
             alert('Aún no has seleccionado ningún producto')
         } ;
     llenarCarrito();
+    localStorage.setItem('carrito', JSON.stringify(CARRITO));
+}
+
+//carga el carrito
+//desde el localStorage
+let pedidoGuardado = localStorage.getItem('carrito')
+
+function persistirCarrito(){
+    if (pedidoGuardado){
+    let imagenCompra = document.createElement('img')
+    let PEDIDO_GUARDADO = JSON.parse(pedidoGuardado);
+    PEDIDO_GUARDADO.forEach(pedido => imagenCompra.setAttribute('src', pedido.link))
+    divFotos.appendChild(imagenCompra)
+    
+    cantidadCompra.textContent = PEDIDO_GUARDADO.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
+    }
 }
 
 ///enviar datos
@@ -140,9 +169,14 @@ botonCerrarModal.onclick = () => {
     carritoModal.style.display = "none";
 }
 btnEliminar.onclick = () =>{
-    carrito.pop()
+    CARRITO.pop()
     divFotos.removeChild(divFotos.lastChild)
     sumarCantidad()
 }
 
 filtroSeleccion.addEventListener('change', filtrar)
+
+window.onload = filtroPredeter();
+
+window.onload = persistirCarrito();
+
