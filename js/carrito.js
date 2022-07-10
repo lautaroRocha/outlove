@@ -1,12 +1,15 @@
+
+
 //Clase del objeto del carrito
 class Pedido {
-    constructor(cliente, direccion, producto, cantidad, talle, observaciones){
+    constructor(cliente, direccion, producto, cantidad, talle, observaciones, link){
         this.cliente = cliente,
         this.direccion = direccion,
         this.producto = producto,
         this.cantidad = cantidad,
         this.talle = talle,
         this.observaciones = observaciones
+        this.link = link;
     }
 }
 //Clase de los objetos a la venta
@@ -19,6 +22,8 @@ class Producto {
     }
 }
 
+
+
 //Display de productos y selección
 const nombreProducto = document.querySelector('#producto-seleccion-nombre');
 const productoSeleccionado = document.querySelector('#producto-seleccion');
@@ -28,7 +33,7 @@ const filtroSeleccion = document.querySelector("#filtro");
 
 //Productos disponibles
 const PRODUCTOS = [];
-{
+
 PRODUCTOS.push(remeraNegraMontaña = new Producto("remera", "remera negra montaña",  1700, "images/remera1.png"));
 PRODUCTOS.push(remeraBlancaMontaña = new Producto("remera", "remera blanca montaña", 1700, "images/remera2.png"));
 PRODUCTOS.push(remeraCaminante = new Producto("remera", "remera caminante", 1700, "images/remera3.png"));
@@ -41,11 +46,10 @@ PRODUCTOS.push(botaNegraAlta = new Producto("calzado", "bota negra alta", 4000, 
 PRODUCTOS.push(gorroAustraliano = new Producto("gorro", "gorro australiano", 2000, "images/hat1.png"))
 PRODUCTOS.push(gorraMontana = new Producto("gorro", "gorra montana", 1500, "images/hat2.png"));
 PRODUCTOS.push(gorroFrio = new Producto("gorro", "gorro invierno", 4000, "images/hat3.png"))
-}
+
 
 //carrito
 let datosClientes = document.querySelector("#forma-cliente")
-const botonAnadir = document.querySelector("#anadir-carrito");
 let CARRITO = [];
 
 ///Modal del carrito
@@ -118,7 +122,7 @@ function sumarCantidad() {
 
 function llenarCarrito(){
     let imagenCompra = document.createElement('img')
-    imagenCompra.setAttribute('src', productoSeleccionado.getAttribute('src'));
+    CARRITO.forEach(pedido => imagenCompra.setAttribute('src', pedido.link))
     divFotos.appendChild(imagenCompra); 
 }
 
@@ -134,12 +138,14 @@ function enviarAlCarrito() {
     ///evita que se envíe un pedido
     ///sin producto
     if(nombreProducto.innerText !== ""){
-        CARRITO.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`));
+        CARRITO.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`, 
+        productoSeleccionado.getAttribute('src')));
         sumarCantidad();
     }else{
             alert('Aún no has seleccionado ningún producto')
         } ;
     llenarCarrito();
+    localStorage.setItem('carrito', JSON.stringify(CARRITO));
 }
 
 ///enviar datos
