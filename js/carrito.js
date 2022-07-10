@@ -176,5 +176,7 @@ btnEliminar.onclick = () =>{
 
 filtroSeleccion.addEventListener('change', filtrar)
 
-filtroPredeter();
+window.onload = filtroPredeter();
+
+window.onload = persistirCarrito();
 
