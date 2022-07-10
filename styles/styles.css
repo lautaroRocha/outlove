@@ -37,10 +37,22 @@
     font-size: 2rem; }
   .cabecera img {
     height: 1.5rem;
+    animation-name: stretch;
+    animation-duration: 2.0s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
     filter: invert(90%) sepia(93%) saturate(465%) hue-rotate(358deg) brightness(105%) contrast(104%); }
     .cabecera img:hover {
       cursor: pointer;
       -webkit-drop-shadow: 0px 0px 5px #fff; }
+
+@keyframes stretch {
+  0% {
+    transform: scale(0.9); }
+  100% {
+    transform: scale(1); } }
 
 .cabecera-clara {
   background-color: var(--ver);
@@ -256,34 +268,54 @@ footer {
         text-align: center;
         border-radius: 5px;
         font-weight: 500; }
-  .tienda .tienda-seleccion {
+  .tienda .tienda-dos {
     display: flex;
     flex-direction: column;
-    align-items: center; }
-    .tienda .tienda-seleccion img {
-      width: 80%;
-      margin: 1.5rem; }
-    .tienda .tienda-seleccion .seleccion-modelo {
-      text-transform: uppercase;
-      text-align: center;
-      margin: 7vh auto 3vh;
-      max-width: 80vw;
-      font-size: clamp(30px, 15vw, 40px);
-      background-color: var(--verCla);
-      border-radius: 10px; }
-  .tienda .tienda-fotos {
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    margin: auto;
-    gap: .5rem;
-    max-width: 80%; }
-    .tienda .tienda-fotos img {
-      width: clamp(20%, 15rem, 45%);
-      height: auto; }
-      .tienda .tienda-fotos img:hover {
-        cursor: pointer;
-        transform: scale(1.7); }
+    align-items: center; }
+    .tienda .tienda-dos .tienda-copy-fondo {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin: 4.5rem auto;
+      width: 100%; }
+      .tienda .tienda-dos .tienda-copy-fondo .fondo-hojas-claro {
+        filter: invert(91%) sepia(66%) saturate(645%) hue-rotate(57deg) brightness(102%) contrast(96%);
+        height: auto;
+        width: 9rem; }
+      .tienda .tienda-dos .tienda-copy-fondo .fondo-hojas-osc {
+        filter: invert(10%) sepia(68%) saturate(3707%) hue-rotate(293deg) brightness(109%);
+        height: auto;
+        width: 9rem; }
+    .tienda .tienda-dos .tienda-tres .tienda-seleccion {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      .tienda .tienda-dos .tienda-tres .tienda-seleccion img {
+        width: 80%;
+        margin: 1.5rem; }
+      .tienda .tienda-dos .tienda-tres .tienda-seleccion .seleccion-modelo {
+        text-transform: uppercase;
+        text-align: center;
+        margin: 7vh auto 3vh;
+        max-width: 80vw;
+        font-size: clamp(30px, 15vw, 40px);
+        background-color: var(--verCla);
+        border-radius: 10px; }
+    .tienda .tienda-dos .tienda-tres .tienda-fotos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: auto;
+      gap: .5rem;
+      max-width: 80%; }
+      .tienda .tienda-dos .tienda-tres .tienda-fotos img {
+        width: clamp(20%, 15rem, 45%);
+        height: auto; }
+        .tienda .tienda-dos .tienda-tres .tienda-fotos img:hover {
+          cursor: pointer;
+          transform: scale(1.7); }
 
 .carrito-modal {
   display: none;
@@ -371,9 +403,18 @@ footer {
   .tienda .tienda-dos {
     display: flex;
     max-width: 1300px; }
-    .tienda .tienda-dos .tienda-seleccion {
+    .tienda .tienda-dos .tienda-copy-fondo .fondo-hojas-claro {
+      height: auto;
+      width: 15rem; }
+    .tienda .tienda-dos .tienda-copy-fondo .fondo-hojas-osc {
+      height: auto;
+      width: 15rem; }
+  .tienda .tienda-tres {
+    display: flex;
+    max-width: 1300px; }
+    .tienda .tienda-tres .tienda-seleccion {
       width: 40%; }
-    .tienda .tienda-dos .tienda-fotos {
+    .tienda .tienda-tres .tienda-fotos {
       width: 40%; }
   .carrito-modal .tienda-carrito {
     width: 50%; }

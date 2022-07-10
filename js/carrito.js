@@ -68,8 +68,9 @@ function actualizarNombre() {
 //el array
 
 let filtroGuardado = localStorage.getItem('filtro');
-
+let fondoTienda = document.querySelector("#fondo-tienda")
 function filtrar(){
+    fondoTienda.style.display = "none";
         if (filtroSeleccion.value == "todo"){
             limpiarSeleccion();
             crearCards(PRODUCTOS);
@@ -186,6 +187,6 @@ btnEliminar.onclick = () =>{
 filtroSeleccion.addEventListener('change', filtrar)
 
 
-window.onload = filtroPredeter();
+//window.onload = filtroPredeter();
 
 window.onload = persistirCarrito();

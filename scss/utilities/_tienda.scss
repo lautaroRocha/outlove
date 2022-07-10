@@ -62,39 +62,65 @@
             }
         }
 }
-    .tienda-seleccion {
+    .tienda-dos{
         display: flex;
         flex-direction: column;
-        align-items: center;
-        img {
-            width: 80%;
-            margin: 1.5rem;
-        }
-        .seleccion-modelo{
-            text-transform: uppercase;
-            text-align: center;
-            margin: 7vh auto 3vh;
-            max-width: 80vw;
-            font-size: clamp(30px, 15vw, 40px);
-            background-color: var(--verCla);
-            border-radius: 10px;
-        }
-    }
-    .tienda-fotos {
-        display: flex;
-        flex-wrap: wrap;
         justify-content: center;
-        margin:  auto;
-        gap: .5rem;
-        max-width: 80%;
-        img{ 
-            width: clamp(20%, 15rem, 45%);
-            height: auto;
-            &:hover {
-                cursor: pointer;
-                transform: scale(1.7) ;
+        align-items: center;
+            .tienda-copy-fondo{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 4.5rem auto;
+            width: 100%;
+                .fondo-hojas-claro{
+                    filter: invert(91%) sepia(66%) saturate(645%) hue-rotate(57deg) brightness(102%) contrast(96%);
+                    height: auto;
+                    width: 9rem;
+                }
+                .fondo-hojas-osc{
+                    filter: invert(10%) sepia(68%) saturate(3707%) hue-rotate(293deg) brightness(109%);
+                    height: auto;
+                    width: 9rem;
+                }
+            }
+    .tienda-tres{  
+        .tienda-seleccion {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            img {
+                width: 80%;
+                margin: 1.5rem;
+            }
+            .seleccion-modelo{
+                text-transform: uppercase;
+                text-align: center;
+                margin: 7vh auto 3vh;
+                max-width: 80vw;
+                font-size: clamp(30px, 15vw, 40px);
+                background-color: var(--verCla);
+                border-radius: 10px;
             }
         }
+        .tienda-fotos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin:  auto;
+            gap: .5rem;
+            max-width: 80%;
+            img{ 
+                width: clamp(20%, 15rem, 45%);
+                height: auto;
+                &:hover {
+                    cursor: pointer;
+                    transform: scale(1.7) ;
+                }
+            }
+        }
+    }
     }
 }
 
@@ -184,6 +210,7 @@
 }
 
 
+
 @media (min-width: 850px){
     .tienda {
         .tienda-uno {
@@ -205,6 +232,20 @@
                 }
             }
             .tienda-dos {
+                display:flex;
+                max-width: 1300px;
+                .tienda-copy-fondo{
+                    .fondo-hojas-claro{
+                        height: auto;
+                        width: 15rem;
+                    }
+                    .fondo-hojas-osc{
+                        height: auto;
+                        width: 15rem;
+                    }
+                }
+            }
+            .tienda-tres{
                 display:flex;
                 max-width: 1300px;
                 .tienda-seleccion{
