@@ -109,16 +109,16 @@ function limpiarSeleccion(){
 ///muestra el total de 
 //productos pedidos en el carrito
 
-function sumarCantidad() {
-    cantidadCompra.textContent = CARRITO.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
+function sumarCantidad(arr) {
+    cantidadCompra.textContent = arr.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
 }
 
 //envía img seleccionada al
 //carrito
-function llenarCarrito(){
+function llenarCarrito(arr){
     let imagenCompra = document.createElement('img')
-    CARRITO.forEach(pedido => imagenCompra.setAttribute('src', pedido.link))
-    divFotos.appendChild(imagenCompra); 
+    arr.forEach(pedido => imagenCompra.setAttribute('src', pedido.link))
+    divFotos.appendChild(imagenCompra);
 }
 
 //envia los datos del form
@@ -135,28 +135,28 @@ function enviarAlCarrito() {
     if(nombreProducto.innerText !== ""){
         CARRITO.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`, 
         productoSeleccionado.getAttribute('src')));
-        sumarCantidad();
+        sumarCantidad(CARRITO);
     }else{
             alert('Aún no has seleccionado ningún producto')
         } ;
-    llenarCarrito();
+    llenarCarrito(CARRITO);
     localStorage.setItem('carrito', JSON.stringify(CARRITO));
+    localStorage.setItem('carrito-img', divFotos.getInnerHTML())
 }
-
 //carga el carrito
 //desde el localStorage
-let pedidoGuardado = localStorage.getItem('carrito')
+let pedidoGuardado = localStorage.getItem('carrito');
+let PEDIDO_GUARDADO;
+let pedidoGuardadoFotos = localStorage.getItem('carrito-img')
 
 function persistirCarrito(){
-    if (pedidoGuardado){
-    let imagenCompra = document.createElement('img')
-    let PEDIDO_GUARDADO = JSON.parse(pedidoGuardado);
-    PEDIDO_GUARDADO.forEach(pedido => imagenCompra.setAttribute('src', pedido.link))
-    divFotos.appendChild(imagenCompra)
-    
-    cantidadCompra.textContent = PEDIDO_GUARDADO.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
+    if(pedidoGuardado !== null){
+        PEDIDO_GUARDADO = JSON.parse(pedidoGuardado);
+        divFotos.innerHTML = pedidoGuardadoFotos;
+        cantidadCompra.textContent = PEDIDO_GUARDADO.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
     }
 }
+
 
 ///enviar datos
 datosClientes.addEventListener('submit', enviarAlCarrito);
@@ -168,13 +168,19 @@ botonModal.onclick =() => {
 botonCerrarModal.onclick = () => {
     carritoModal.style.display = "none";
 }
+
 btnEliminar.onclick = () =>{
-    CARRITO.pop()
     divFotos.removeChild(divFotos.lastChild)
-    let PEDIDO_GUARDADO = JSON.parse(pedidoGuardado);  //
-    localStorage.setItem('carrito', PEDIDO_GUARDADO)   //elimina el objeto del modal y del storage
-    PEDIDO_GUARDADO.pop();                             //
-    sumarCantidad()
+    CARRITO.pop()
+    if(pedidoGuardado !== null){
+    PEDIDO_GUARDADO.pop()
+    localStorage.setItem('carrito-img', divFotos.innerHTML)
+    localStorage.setItem('carrito', JSON.stringify(PEDIDO_GUARDADO));
+    sumarCantidad(PEDIDO_GUARDADO)
+    }else{
+        sumarCantidad(CARRITO);
+    }
+    
 }
 
 filtroSeleccion.addEventListener('change', filtrar)
@@ -183,4 +189,3 @@ filtroSeleccion.addEventListener('change', filtrar)
 window.onload = filtroPredeter();
 
 window.onload = persistirCarrito();
-
