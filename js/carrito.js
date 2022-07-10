@@ -171,10 +171,14 @@ botonCerrarModal.onclick = () => {
 btnEliminar.onclick = () =>{
     CARRITO.pop()
     divFotos.removeChild(divFotos.lastChild)
+    let PEDIDO_GUARDADO = JSON.parse(pedidoGuardado);  //
+    localStorage.setItem('carrito', PEDIDO_GUARDADO)   //elimina el objeto del modal y del storage
+    PEDIDO_GUARDADO.pop();                             //
     sumarCantidad()
 }
 
 filtroSeleccion.addEventListener('change', filtrar)
+
 
 window.onload = filtroPredeter();
 
