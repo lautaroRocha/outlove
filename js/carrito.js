@@ -66,8 +66,6 @@ function actualizarNombre() {
 //Crea las cards
 //de los productos repasando
 //el array
-
-let filtroGuardado = localStorage.getItem('filtro');
 let fondoTienda = document.querySelector("#fondo-tienda")
 function filtrar(){
     fondoTienda.style.display = "none";
@@ -79,14 +77,7 @@ function filtrar(){
             crearFiltrados(filtroSeleccion.value);
             crearCards(PRODUCTOS_FILTRADOS)
         }
-        localStorage.setItem('filtro', filtroSeleccion.value)
 }
-
-function filtroPredeter() {
-        limpiarSeleccion();
-        crearFiltrados(filtroGuardado);
-        crearCards(PRODUCTOS_FILTRADOS)
-    }
 
 function crearFiltrados(val){
     PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == val);
@@ -110,15 +101,15 @@ function limpiarSeleccion(){
 ///muestra el total de 
 //productos pedidos en el carrito
 
-function sumarCantidad(arr) {
-    cantidadCompra.textContent = arr.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
+function sumarCantidad() {
+    cantidadCompra.textContent = CARRITO.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
 }
 
 //envía img seleccionada al
 //carrito
-function llenarCarrito(arr){
+function llenarCarrito(){
     let imagenCompra = document.createElement('img')
-    arr.forEach(pedido => imagenCompra.setAttribute('src', pedido.link))
+    CARRITO.forEach(pedido => imagenCompra.setAttribute('src', pedido.link))
     divFotos.appendChild(imagenCompra);
 }
 
@@ -133,29 +124,29 @@ function enviarAlCarrito() {
     let direccion = document.querySelector("#direccion").value;
     ///evita que se envíe un pedido
     ///sin producto
-    if(nombreProducto.innerText !== ""){
+    if(nombreProducto.innerText !== "" && cantidad > 0){
         CARRITO.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`, 
         productoSeleccionado.getAttribute('src')));
         sumarCantidad(CARRITO);
+        localStorage.setItem('carrito', JSON.stringify(CARRITO));
+        localStorage.setItem('carrito-img', divFotos.getInnerHTML())
     }else{
-            alert('Aún no has seleccionado ningún producto')
+            alert('Algo no salió como esperabámos, revisá tus datos')
         } ;
-    llenarCarrito(CARRITO);
-    localStorage.setItem('carrito', JSON.stringify(CARRITO));
-    localStorage.setItem('carrito-img', divFotos.getInnerHTML())
+    llenarCarrito();
 }
 //carga el carrito
 //desde el localStorage
 let pedidoGuardado = localStorage.getItem('carrito');
-let PEDIDO_GUARDADO;
 let pedidoGuardadoFotos = localStorage.getItem('carrito-img')
 
 function persistirCarrito(){
     if(pedidoGuardado !== null){
-        PEDIDO_GUARDADO = JSON.parse(pedidoGuardado);
+        CARRITO = JSON.parse(pedidoGuardado);
         divFotos.innerHTML = pedidoGuardadoFotos;
-        cantidadCompra.textContent = PEDIDO_GUARDADO.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
-    }
+        llenarCarrito();
+        sumarCantidad();
+   }
 }
 
 
@@ -172,21 +163,13 @@ botonCerrarModal.onclick = () => {
 
 btnEliminar.onclick = () =>{
     divFotos.removeChild(divFotos.lastChild)
-    CARRITO.pop()
-    if(pedidoGuardado !== null){
-    PEDIDO_GUARDADO.pop()
+    CARRITO.pop();
+    sumarCantidad(CARRITO);
     localStorage.setItem('carrito-img', divFotos.innerHTML)
-    localStorage.setItem('carrito', JSON.stringify(PEDIDO_GUARDADO));
-    sumarCantidad(PEDIDO_GUARDADO)
-    }else{
-        sumarCantidad(CARRITO);
-    }
-    
+    localStorage.setItem('carrito', JSON.stringify(CARRITO));
 }
 
 filtroSeleccion.addEventListener('change', filtrar)
 
-
-//window.onload = filtroPredeter();
 
 window.onload = persistirCarrito();
