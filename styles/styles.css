@@ -37,6 +37,7 @@
     font-size: 2rem; }
   .cabecera img {
     height: 1.5rem;
+    margin: 5px;
     animation-name: stretch;
     animation-duration: 2.0s;
     animation-timing-function: ease-in-out;
@@ -227,7 +228,7 @@ footer {
     align-items: center;
     gap: 2rem; }
     .tienda .tienda-uno .tienda-control {
-      display: grid;
+      display: none;
       grid-template-columns: 1fr 1fr;
       align-items: center;
       margin: auto;
@@ -257,7 +258,7 @@ footer {
     .tienda .tienda-uno .filtro {
       display: flex;
       flex-direction: column;
-      width: 50%;
+      width: 50vw;
       text-align: center;
       background-color: var(--ama);
       padding: 1rem;
@@ -293,7 +294,7 @@ footer {
       flex-direction: column;
       align-items: center; }
       .tienda .tienda-dos .tienda-tres .tienda-seleccion img {
-        width: 80%;
+        width: 50%;
         margin: 1.5rem; }
       .tienda .tienda-dos .tienda-tres .tienda-seleccion .seleccion-modelo {
         text-transform: uppercase;
@@ -387,9 +388,6 @@ footer {
 
 @media (min-width: 850px) {
   .tienda .tienda-uno {
-    flex-direction: row;
-    align-items: center;
-    gap: 10rem;
     margin-bottom: 2rem; }
     .tienda .tienda-uno .tienda-control {
       width: 40vw;

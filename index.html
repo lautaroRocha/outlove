@@ -17,9 +17,14 @@
       <span>
         <a href="#head">Outlove</a>
       </span>
-      <span>
-      <img src="images/stars.svg" alt="" id="btn-mode">
-      </span>
+     <div>
+       <span>
+         <img src="images/cart.svg" alt="" id="btn-cart">
+         </span>
+       <span>
+       <img src="images/stars.svg" alt="" id="btn-mode">
+       </span>
+     </div>
     </div>
       <div >
         <nav class="cabecera-clara">
@@ -57,7 +62,7 @@
       <div class="tienda">
        <div class="tienda-uno">
         <form onsubmit="return false" id="forma-cliente">
-           <div class="tienda-control">
+           <div class="tienda-control" id="tienda-control" >
              <label for="talle">Talle:</label>
              <select required name="talle" id="talle" >
                <option value="S">S</option>
@@ -123,7 +128,7 @@
           <div class="carrito-img" id="carrito-flex">
           </div>
          <div class="carrito-btn">
-           <button type="submit">Comprar</button>
+           <button type="submit" id="btn-comprar">Comprar</button>
            <button type="button" id="eli-prod">Eliminar último producto</button>
          </div>
         </div>

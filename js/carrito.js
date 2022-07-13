@@ -25,7 +25,7 @@ const nombreProducto = document.querySelector('#producto-seleccion-nombre');
 const productoSeleccionado = document.querySelector('#producto-seleccion');
 const fotosProductos = document.querySelector('.tienda-fotos');
 const filtroSeleccion = document.querySelector("#filtro");
-
+const tiendaControl = document.querySelector('#tienda-control')
 
 //Productos disponibles
 let PRODUCTOS = [];
@@ -45,6 +45,7 @@ PRODUCTOS.push(gorroFrio = new Producto("gorro", "gorro invierno", 4000, "images
 }
 
 //carrito
+let botonCart = document.querySelector("#btn-cart")
 let datosClientes = document.querySelector("#forma-cliente")
 let CARRITO = [];
 
@@ -56,12 +57,15 @@ let botonCerrarModal = document.querySelector("#cerrar-modal")
 let cantidadCompra = document.querySelector("#cantidad-comprada");
 let divFotos = document.querySelector("#carrito-flex");
 let btnEliminar = document.querySelector('#eli-prod');
-
+let btnComprar = document.querySelector('#btn-comprar')
 //El modelo del producto seleccionado
 function actualizarNombre() {
     objetoElegido = PRODUCTOS.find(prod => prod.link == productoSeleccionado.getAttribute('src'))
     nombreProducto.textContent = objetoElegido.modelo;
     nombreProducto.scrollIntoView();
+    if (nombreProducto !== ""){
+        tiendaControl.style.display = "grid"
+    }
 }
 
 //Crea las cards
@@ -151,12 +155,14 @@ function persistirCarrito(){
    }
 }
 
-
 ///enviar datos
 datosClientes.addEventListener('submit', enviarAlCarrito);
 
 //botones del modal
 botonModal.onclick =() => {
+    carritoModal.style.display = "block";
+  }
+botonCart.onclick =() => {
     carritoModal.style.display = "block";
   }
 botonCerrarModal.onclick = () => {
@@ -170,6 +176,7 @@ btnEliminar.onclick = () =>{
     localStorage.setItem('carrito-img', divFotos.innerHTML)
     localStorage.setItem('carrito', JSON.stringify(CARRITO));
 }
+
 
 filtroSeleccion.addEventListener('change', filtrar)
 
