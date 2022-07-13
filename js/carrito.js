@@ -61,12 +61,14 @@ let btnEliminar = document.querySelector('#eli-prod');
 function actualizarNombre() {
     objetoElegido = PRODUCTOS.find(prod => prod.link == productoSeleccionado.getAttribute('src'))
     nombreProducto.textContent = objetoElegido.modelo;
+    nombreProducto.scrollIntoView();
 }
 
 //Crea las cards
 //de los productos repasando
 //el array
 let fondoTienda = document.querySelector("#fondo-tienda")
+
 function filtrar(){
     fondoTienda.style.display = "none";
         if (filtroSeleccion.value == "todo"){
@@ -77,7 +79,8 @@ function filtrar(){
             crearFiltrados(filtroSeleccion.value);
             crearCards(PRODUCTOS_FILTRADOS)
         }
-}
+        fotosProductos.scrollIntoView();
+    }
 
 function crearFiltrados(val){
     PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == val);
@@ -169,6 +172,5 @@ btnEliminar.onclick = () =>{
 }
 
 filtroSeleccion.addEventListener('change', filtrar)
-
 
 window.onload = persistirCarrito();
