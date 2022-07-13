@@ -144,7 +144,6 @@ function persistirCarrito(){
     if(pedidoGuardado !== null){
         CARRITO = JSON.parse(pedidoGuardado);
         divFotos.innerHTML = pedidoGuardadoFotos;
-        llenarCarrito();
         sumarCantidad();
    }
 }
