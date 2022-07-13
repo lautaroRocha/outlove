@@ -118,6 +118,7 @@ function llenarCarrito(){
     let imagenCompra = document.createElement('img')
     CARRITO.forEach(pedido => imagenCompra.setAttribute('src', pedido.link))
     divFotos.appendChild(imagenCompra);
+    localStorage.setItem('carrito-img', divFotos.getInnerHTML())
 }
 
 //envia los datos del form
@@ -136,7 +137,6 @@ function enviarAlCarrito() {
         productoSeleccionado.getAttribute('src')));
         sumarCantidad(CARRITO);
         localStorage.setItem('carrito', JSON.stringify(CARRITO));
-        localStorage.setItem('carrito-img', divFotos.getInnerHTML())
     }else{
             alert('Algo no salió como esperabámos, revisá tus datos')
         } ;
