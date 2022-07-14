@@ -25,7 +25,29 @@ const nombreProducto = document.querySelector('#producto-seleccion-nombre');
 const productoSeleccionado = document.querySelector('#producto-seleccion');
 const fotosProductos = document.querySelector('.tienda-fotos');
 const filtroSeleccion = document.querySelector("#filtro");
-const tiendaControl = document.querySelector('#tienda-control')
+const tiendaControl = document.querySelector('#tienda-control');
+let fondoTienda = document.querySelector("#fondo-tienda");
+
+//carrito
+let botonCart = document.querySelector("#btn-cart")
+let datosClientes = document.querySelector("#forma-cliente")
+let CARRITO = [];
+
+///Storage de Carrito
+let pedidoGuardado = localStorage.getItem('carrito');
+let pedidoGuardadoFotos = localStorage.getItem('carrito-img')
+
+///Modal del carrito
+
+let botonModal = document.querySelector('#boton-modal')
+let carritoModal = document.querySelector('#carrito-modal')
+let botonCerrarModal = document.querySelector("#cerrar-modal")
+let cantidadCompra = document.querySelector("#cantidad-comprada");
+let divFotos = document.querySelector("#carrito-flex");
+let btnEliminar = document.querySelector('#eli-prod');
+let btnComprar = document.querySelector('#btn-comprar')
+
+
 
 //Productos disponibles
 let PRODUCTOS = [];
@@ -44,20 +66,6 @@ PRODUCTOS.push(gorraMontana = new Producto("gorro", "gorra montana", 1500, "imag
 PRODUCTOS.push(gorroFrio = new Producto("gorro", "gorro invierno", 4000, "images/hat3.png"))
 }
 
-//carrito
-let botonCart = document.querySelector("#btn-cart")
-let datosClientes = document.querySelector("#forma-cliente")
-let CARRITO = [];
-
-///Modal del carrito
-
-let botonModal = document.querySelector('#boton-modal')
-let carritoModal = document.querySelector('#carrito-modal')
-let botonCerrarModal = document.querySelector("#cerrar-modal")
-let cantidadCompra = document.querySelector("#cantidad-comprada");
-let divFotos = document.querySelector("#carrito-flex");
-let btnEliminar = document.querySelector('#eli-prod');
-let btnComprar = document.querySelector('#btn-comprar')
 //El modelo del producto seleccionado
 function actualizarNombre() {
     objetoElegido = PRODUCTOS.find(prod => prod.link == productoSeleccionado.getAttribute('src'))
@@ -71,7 +79,6 @@ function actualizarNombre() {
 //Crea las cards
 //de los productos repasando
 //el array
-let fondoTienda = document.querySelector("#fondo-tienda")
 
 function filtrar(){
     fondoTienda.style.display = "none";
@@ -144,9 +151,6 @@ function enviarAlCarrito() {
 }
 //carga el carrito
 //desde el localStorage
-let pedidoGuardado = localStorage.getItem('carrito');
-let pedidoGuardadoFotos = localStorage.getItem('carrito-img')
-
 function persistirCarrito(){
     if(pedidoGuardado !== null){
         CARRITO = JSON.parse(pedidoGuardado);
@@ -154,6 +158,7 @@ function persistirCarrito(){
         sumarCantidad();
    }
 }
+
 
 ///enviar datos
 datosClientes.addEventListener('submit', enviarAlCarrito);
@@ -176,8 +181,16 @@ btnEliminar.onclick = () =>{
     localStorage.setItem('carrito-img', divFotos.innerHTML)
     localStorage.setItem('carrito', JSON.stringify(CARRITO));
 }
-
-
+btnComprar.onclick = () =>{
+    alert(`${CARRITO[0].cliente}, ¡gracias por elegirnos! Recibirás tu compra en ${CARRITO[0].direccion} dentro de una semana, te enviamos todos los detalles de tu compra a tu dirección de e-mail`);
+    CARRITO = [];
+    localStorage.removeItem('carrito');
+    localStorage.removeItem('carrito-img');
+    divFotos.innerHTML = "";
+    sumarCantidad()
+}
 filtroSeleccion.addEventListener('change', filtrar)
 
 window.onload = persistirCarrito();
+
+
