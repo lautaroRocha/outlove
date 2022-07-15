@@ -1,12 +1,12 @@
 //Clase del objeto del carrito
 class Pedido {
-    constructor(cliente, direccion, producto, cantidad, talle, observaciones, link){
+    constructor(cliente, direccion, producto, cantidad, talle, email, link){
         this.cliente = cliente,
         this.direccion = direccion,
         this.producto = producto,
         this.cantidad = cantidad,
         this.talle = talle,
-        this.observaciones = observaciones
+        this.email = email
         this.link = link;
     }
 }
@@ -134,18 +134,18 @@ function llenarCarrito(){
 function enviarAlCarrito() {
     let talle = document.querySelector("#talle").value;
     let cantidad = document.querySelector("#canti").value;
-    let observaciones = document.querySelector("#obs").value;
+    let email = document.querySelector("#obs").value;
     let cliente = document.querySelector("#cliente").value;
     let direccion = document.querySelector("#direccion").value;
     ///evita que se envíe un pedido
     ///sin producto
     if(nombreProducto.innerText !== "" && cantidad > 0){
-        CARRITO.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${observaciones}`, 
+        CARRITO.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${email}`, 
         productoSeleccionado.getAttribute('src')));
         sumarCantidad(CARRITO);
         localStorage.setItem('carrito', JSON.stringify(CARRITO));
     }else{
-            alert('Algo no salió como esperabámos, revisá tus datos')
+            swal('Algo no salió como esperabámos, revisá tus datos')
         } ;
     llenarCarrito();
 }
@@ -182,12 +182,14 @@ btnEliminar.onclick = () =>{
     localStorage.setItem('carrito', JSON.stringify(CARRITO));
 }
 btnComprar.onclick = () =>{
-    alert(`${CARRITO[0].cliente}, ¡gracias por elegirnos! Recibirás tu compra en ${CARRITO[0].direccion} dentro de una semana, te enviamos todos los detalles de tu compra a tu dirección de e-mail`);
-    CARRITO = [];
-    localStorage.removeItem('carrito');
-    localStorage.removeItem('carrito-img');
-    divFotos.innerHTML = "";
-    sumarCantidad()
+    swal(
+        text =`${CARRITO[0].cliente}, ¡gracias por elegirnos! Recibirás tu compra en ${CARRITO[0].direccion} dentro de una semana, te enviamos todos los detalles de tu compra a ${CARRITO[0].email}`,
+        );
+    // CARRITO = [];
+    // localStorage.removeItem('carrito');
+    // localStorage.removeItem('carrito-img');
+    // divFotos.innerHTML = "";
+    // sumarCantidad()
 }
 filtroSeleccion.addEventListener('change', filtrar)
 
