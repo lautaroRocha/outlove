@@ -1,3 +1,4 @@
+
 //Clase del objeto del carrito
 class Pedido {
     constructor(cliente, direccion, producto, cantidad, talle, email, link){
@@ -7,15 +8,6 @@ class Pedido {
         this.cantidad = cantidad,
         this.talle = talle,
         this.email = email
-        this.link = link;
-    }
-}
-//Clase de los objetos a la venta
-class Producto {
-    constructor(clase, modelo, precio,link){
-        this.clase = clase;
-        this.modelo = modelo,
-        this.precio = precio,
         this.link = link;
     }
 }
@@ -50,21 +42,11 @@ let btnComprar = document.querySelector('#btn-comprar')
 
 
 //Productos disponibles
+fetch('http://myjson.dit.upm.es/api/bins/411z')
+.then(response => response.json())
+.then(data => PRODUCTOS = data);
+
 let PRODUCTOS = [];
-{
-PRODUCTOS.push(remeraNegraMontaña = new Producto("remera", "remera negra montaña",  1700, "images/remera1.png"));
-PRODUCTOS.push(remeraBlancaMontaña = new Producto("remera", "remera blanca montaña", 1700, "images/remera2.png"));
-PRODUCTOS.push(remeraCaminante = new Producto("remera", "remera caminante", 1700, "images/remera3.png"));
-PRODUCTOS.push(remeraEmblema = new Producto("remera", "remera emblema", 1700, "images/remera4.png"));
-PRODUCTOS.push(remeraCaminanteBlanca = new Producto("remera", "remera caminante blanca", 1700, "images/remera5.png"));
-PRODUCTOS.push(remeraNegraMontañaBlanca = new Producto("remera", "remera negra montaña blanca", 1700, "images/remera6.png"));
-PRODUCTOS.push(botaMarronAlta = new Producto("calzado", "bota marrón alta", 4000, "images/bota1.png") )
-PRODUCTOS.push(botaGrisBaja = new Producto("calzado", "botín gris topo", 3500, "images/bota2.png"));
-PRODUCTOS.push(botaNegraAlta = new Producto("calzado", "bota negra alta", 4000, "images/bota3.png"));
-PRODUCTOS.push(gorroAustraliano = new Producto("gorro", "gorro australiano", 2000, "images/hat1.png"))
-PRODUCTOS.push(gorraMontana = new Producto("gorro", "gorra montana", 1500, "images/hat2.png"));
-PRODUCTOS.push(gorroFrio = new Producto("gorro", "gorro invierno", 4000, "images/hat3.png"))
-}
 
 //El modelo del producto seleccionado
 function actualizarNombre() {
