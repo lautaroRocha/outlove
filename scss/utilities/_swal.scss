@@ -17,8 +17,8 @@
 }
 .swal-footer{
     display:flex;
-    justify-content: center;
-.swal-button--confirm {
+    justify-content: space-around;
+.swal-button--confirm, .swal-button--cancel {
     font-weight: 800;
     color: #000;
     padding: .5rem;

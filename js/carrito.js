@@ -1,7 +1,7 @@
 
 //Clase del objeto del carrito
 class Pedido {
-    constructor(cliente, direccion, producto, cantidad, talle, email, link){
+    constructor(cliente, direccion, producto, cantidad, talle, email, link, precio){
         this.cliente = cliente,
         this.direccion = direccion,
         this.producto = producto,
@@ -9,6 +9,7 @@ class Pedido {
         this.talle = talle,
         this.email = email
         this.link = link;
+        this.precio = precio
     }
 }
 
@@ -123,7 +124,7 @@ function enviarAlCarrito() {
     ///sin producto
     if(nombreProducto.innerText !== "" && cantidad > 0){
         CARRITO.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${email}`, 
-        productoSeleccionado.getAttribute('src')));
+        productoSeleccionado.getAttribute('src'), 1700));
         sumarCantidad(CARRITO);
         localStorage.setItem('carrito', JSON.stringify(CARRITO));
     }else{
@@ -148,6 +149,22 @@ function reiniciarCarrito(){
     divFotos.innerHTML = "";
     sumarCantidad()
 }
+
+function notificar(){
+    swal(`${CARRITO[0].cliente}, ¡gracias por elegirnos! Recibirás tu compra en ${CARRITO[0].direccion} dentro de una semana, te enviamos todos los detalles de tu compra a ${CARRITO[0].email}`
+    ) .then(
+     carritoModal.style.display = "none"
+     )
+}
+// function enviarCompra(){  
+//     fetch('https://myjson.dit.upm.es/f727',{
+//         method: 'POST',
+//         body: JSON.stringify(CARRITO)
+//     }).then(
+//         console.log('pedido enviado')
+//     )
+// }
+
 ///enviar datos
 datosClientes.addEventListener('submit', enviarAlCarrito);
 
@@ -170,12 +187,22 @@ btnEliminar.onclick = () =>{
     localStorage.setItem('carrito', JSON.stringify(CARRITO));
 }
 btnComprar.onclick = () =>{
-    swal(
-        text =`${CARRITO[0].cliente}, ¡gracias por elegirnos! Recibirás tu compra en ${CARRITO[0].direccion} dentro de una semana, te enviamos todos los detalles de tu compra a ${CARRITO[0].email}`,
-        ).then(
-         carritoModal.style.display = "none"
-        );
-    reiniciarCarrito();
+    let precioTotal = CARRITO.reduce( (ac, pedido) => ac + parseInt(pedido.precio), 0);
+    swal({
+        text: `El precio total de tu compra es $${precioTotal}, ¿querés continuar?`,
+        buttons: ['Cancelar', 'OK']
+      }).then((conf) => {
+        if(conf){
+        notificar()
+        reiniciarCarrito()
+        }else{
+            reiniciarCarrito()
+            return
+        }
+        }
+        
+        ) 
+   // enviarCompra();
 }
 filtroSeleccion.addEventListener('change', filtrar)
 

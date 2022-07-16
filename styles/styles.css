@@ -448,8 +448,8 @@ footer {
 
 .swal-footer {
   display: flex;
-  justify-content: center; }
-  .swal-footer .swal-button--confirm {
+  justify-content: space-around; }
+  .swal-footer .swal-button--confirm, .swal-footer .swal-button--cancel {
     font-weight: 800;
     color: #000;
     padding: .5rem;
@@ -459,7 +459,7 @@ footer {
     font-size: 1rem;
     border: solid #000;
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3); }
-    .swal-footer .swal-button--confirm:hover {
+    .swal-footer .swal-button--confirm:hover, .swal-footer .swal-button--cancel:hover {
       background-color: var(--verCla); }
 
 * {
