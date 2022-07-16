@@ -9,16 +9,29 @@
     border-radius: 10px;
     box-shadow: -15px 15px  var(--amaCla);
     font-weight: 800;
-    .swal-text{
-        font-weight: 800;
-    }
-    .swal-button {
-        padding: .5rem;
-        border-radius: 5px;
-        background-color: rgb(195, 195, 195);
-        font-size: 12px;
-        border: 1px solid #3e549a;
-        text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
-      }
-      
 }
+.swal-text{
+    font-weight: 800;
+    color: #000;
+    text-align: center;
+}
+.swal-footer{
+    display:flex;
+    justify-content: center;
+.swal-button--confirm {
+    font-weight: 800;
+    color: #000;
+    padding: .5rem;
+    border-radius: 5px;
+    background-color: rgb(195, 195, 195);
+    font-size: 12px;
+    font-size: 1rem;
+    border: solid #000;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);  
+    &:hover{
+        background-color: var(--verCla);
+    } 
+}
+}
+
+

@@ -185,11 +185,11 @@ btnComprar.onclick = () =>{
     swal(
         text =`${CARRITO[0].cliente}, ¡gracias por elegirnos! Recibirás tu compra en ${CARRITO[0].direccion} dentro de una semana, te enviamos todos los detalles de tu compra a ${CARRITO[0].email}`,
         );
-    // CARRITO = [];
-    // localStorage.removeItem('carrito');
-    // localStorage.removeItem('carrito-img');
-    // divFotos.innerHTML = "";
-    // sumarCantidad()
+    CARRITO = [];
+    localStorage.removeItem('carrito');
+    localStorage.removeItem('carrito-img');
+    divFotos.innerHTML = "";
+    sumarCantidad()
 }
 filtroSeleccion.addEventListener('change', filtrar)
 
