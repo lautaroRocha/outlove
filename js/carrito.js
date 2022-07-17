@@ -201,7 +201,7 @@ btnComprar.onclick = () =>{
         notificar()
         reiniciarCarrito()
         }else{
-          //  reiniciarCarrito()
+            reiniciarCarrito()
             return
         }
         }
