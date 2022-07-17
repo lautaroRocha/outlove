@@ -1,4 +1,3 @@
-
 //Clase del objeto del carrito
 class Pedido {
     constructor(cliente, direccion, producto, cantidad, talle, email, link, precio){
@@ -120,11 +119,13 @@ function enviarAlCarrito() {
     let email = document.querySelector("#obs").value;
     let cliente = document.querySelector("#cliente").value;
     let direccion = document.querySelector("#direccion").value;
+    //precio del producto
+    let precio = PRODUCTOS.find(produ => produ.modelo == nombreProducto.textContent).precio
     ///evita que se envíe un pedido
     ///sin producto
     if(nombreProducto.innerText !== "" && cantidad > 0){
         CARRITO.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${email}`, 
-        productoSeleccionado.getAttribute('src'), 1700));
+        `${productoSeleccionado.getAttribute('src')}`, `${precio}`));
         sumarCantidad(CARRITO);
         localStorage.setItem('carrito', JSON.stringify(CARRITO));
     }else{
@@ -187,7 +188,11 @@ btnEliminar.onclick = () =>{
     localStorage.setItem('carrito', JSON.stringify(CARRITO));
 }
 btnComprar.onclick = () =>{
-    let precioTotal = CARRITO.reduce( (ac, pedido) => ac + parseInt(pedido.precio), 0);
+    let precioTotal = 0;
+    CARRITO.forEach(function(pd){
+         precioTotal += (pd.precio * parseInt(pd.cantidad))
+    }
+    )
     swal({
         text: `El precio total de tu compra es $${precioTotal}, ¿querés continuar?`,
         buttons: ['Cancelar', 'OK']
@@ -196,7 +201,7 @@ btnComprar.onclick = () =>{
         notificar()
         reiniciarCarrito()
         }else{
-            reiniciarCarrito()
+          //  reiniciarCarrito()
             return
         }
         }
