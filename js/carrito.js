@@ -166,14 +166,15 @@ function reiniciarCarrito(){
     sumarCantidad()
 }
 
-// function enviarCompra(){  
-//     fetch('https://myjson.dit.upm.es/f727',{
-//         method: 'POST',
-//         body: JSON.stringify(CARRITO)
-//     }).then(
-//         console.log('pedido enviado')
-//     )
-// }
+//envia el pedido a una REST API mockeada
+function enviarCompra(){  
+    fetch('https://eoa76zm4bv2ytl2.m.pipedream.net',{
+        method: 'POST',
+        body: JSON.stringify(CARRITO)
+    }).then(
+        console.log('pedido enviado')
+    )
+}
 
 function notificar(){
     swal(`${CARRITO[0].cliente}, ¡gracias por elegirnos! Recibirás tu compra en ${CARRITO[0].direccion} dentro de una semana, te enviamos todos los detalles de tu compra a ${CARRITO[0].email}`
@@ -213,12 +214,12 @@ btnComprar.onclick = () =>{
         text: `El precio total de tu compra es $${precioTotal}, ¿querés continuar?`,
         buttons: ['Cancelar', 'OK']
       }).then((conf) => {
-        conf && notificar
+        conf && notificar();
         reiniciarCarrito()
         })
+    enviarCompra();
         }
-         
-   // enviarCompra();
+
 
 filtroSeleccion.addEventListener('change', filtrar)
 
