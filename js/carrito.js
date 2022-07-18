@@ -73,8 +73,7 @@ function filtrar(){
             crearCards(PRODUCTOS_FILTRADOS)
         }
         fotosProductos.scrollIntoView();
-    }
-
+}
 function crearFiltrados(val){
     PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == val);
 }
@@ -84,9 +83,9 @@ function crearCards(arr){
         nuevaFoto.setAttribute('src', arr[i].link);
         fotosProductos.appendChild(nuevaFoto);
         nuevaFoto.addEventListener('click', () => 
-        productoSeleccionado.setAttribute('src' , arr[i].link))
-        nuevaFoto.addEventListener('click', actualizarNombre)
-    }
+            productoSeleccionado.setAttribute('src' , arr[i].link))
+            nuevaFoto.addEventListener('click', actualizarNombre)
+        }
 }
 function limpiarSeleccion(){   
     fotosProductos.innerHTML = "";
@@ -133,8 +132,10 @@ function enviarAlCarrito() {
         } ;
     llenarCarrito();
 }
+
 //carga el carrito
 //desde el localStorage
+
 function persistirCarrito(){
     if(pedidoGuardado !== null){
         CARRITO = JSON.parse(pedidoGuardado);
@@ -142,7 +143,6 @@ function persistirCarrito(){
         sumarCantidad();
    }
 }
-
 function recordarCarrito(){
    if(pedidoGuardado){Toastify({
     text: "¡Tenés productos en el carrito!",
@@ -157,7 +157,6 @@ function recordarCarrito(){
     onClick: function(){carritoModal.style.display = "block";} 
   }).showToast();}
 }
-
 function reiniciarCarrito(){
     CARRITO = [];
     localStorage.removeItem('carrito');
@@ -167,6 +166,7 @@ function reiniciarCarrito(){
 }
 
 //envia el pedido a una REST API mockeada
+
 function enviarCompra(){  
     fetch('https://eoa76zm4bv2ytl2.m.pipedream.net',{
         method: 'POST',
@@ -175,7 +175,6 @@ function enviarCompra(){
         console.log('pedido enviado')
     )
 }
-
 function notificar(){
     swal(`${CARRITO[0].cliente}, ¡gracias por elegirnos! Recibirás tu compra en ${CARRITO[0].direccion} dentro de una semana, te enviamos todos los detalles de tu compra a ${CARRITO[0].email}`
     ) .then(
@@ -184,19 +183,20 @@ function notificar(){
 }
 
 ///enviar datos
+
 datosClientes.addEventListener('submit', enviarAlCarrito);
 
 //botones del modal
+
 botonModal.onclick =() => {
     carritoModal.style.display = "block";
-  }
+}
 botonCart.onclick =() => {
     carritoModal.style.display = "block";
-  }
+}
 botonCerrarModal.onclick = () => {
     carritoModal.style.display = "none";
 }
-
 btnEliminar.onclick = () =>{
     divFotos.removeChild(divFotos.lastChild)
     CARRITO.pop();
@@ -207,18 +207,17 @@ btnEliminar.onclick = () =>{
 btnComprar.onclick = () =>{
     let precioTotal = 0;
     CARRITO.forEach(function(pd){
-         precioTotal += (pd.precio * parseInt(pd.cantidad))
-    }
-    )
+         precioTotal += (pd.precio * parseInt(pd.cantidad));
+        })
     swal({
         text: `El precio total de tu compra es $${precioTotal}, ¿querés continuar?`,
         buttons: ['Cancelar', 'OK']
       }).then((conf) => {
         conf && notificar();
-        reiniciarCarrito()
-        })
-    enviarCompra();
-        }
+        enviarCompra();
+        reiniciarCarrito();
+        });
+}
 
 
 filtroSeleccion.addEventListener('change', filtrar)
