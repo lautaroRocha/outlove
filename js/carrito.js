@@ -151,12 +151,6 @@ function reiniciarCarrito(){
     sumarCantidad()
 }
 
-function notificar(){
-    swal(`${CARRITO[0].cliente}, ¡gracias por elegirnos! Recibirás tu compra en ${CARRITO[0].direccion} dentro de una semana, te enviamos todos los detalles de tu compra a ${CARRITO[0].email}`
-    ) .then(
-     carritoModal.style.display = "none"
-     )
-}
 // function enviarCompra(){  
 //     fetch('https://myjson.dit.upm.es/f727',{
 //         method: 'POST',
@@ -165,6 +159,13 @@ function notificar(){
 //         console.log('pedido enviado')
 //     )
 // }
+
+function notificar(){
+    swal(`${CARRITO[0].cliente}, ¡gracias por elegirnos! Recibirás tu compra en ${CARRITO[0].direccion} dentro de una semana, te enviamos todos los detalles de tu compra a ${CARRITO[0].email}`
+    ) .then(
+     carritoModal.style.display = "none"
+     )
+}
 
 ///enviar datos
 datosClientes.addEventListener('submit', enviarAlCarrito);
@@ -197,18 +198,13 @@ btnComprar.onclick = () =>{
         text: `El precio total de tu compra es $${precioTotal}, ¿querés continuar?`,
         buttons: ['Cancelar', 'OK']
       }).then((conf) => {
-        if(conf){
-        notificar()
+        conf && notificar
         reiniciarCarrito()
-        }else{
-            reiniciarCarrito()
-            return
+        })
         }
-        }
-        
-        ) 
+         
    // enviarCompra();
-}
+
 filtroSeleccion.addEventListener('change', filtrar)
 
 window.onload = persistirCarrito();
