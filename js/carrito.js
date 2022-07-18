@@ -143,6 +143,21 @@ function persistirCarrito(){
    }
 }
 
+function recordarCarrito(){
+   if(pedidoGuardado){Toastify({
+    text: "¡Tenés productos en el carrito!",
+    duration: 2000,
+    gravity: "top", 
+    position: "left", 
+    avatar: "https://cdn-icons-png.flaticon.com/512/4555/4555971.png",
+    style: {
+      background: "#ffd600",
+
+    },
+    onClick: function(){carritoModal.style.display = "block";} 
+  }).showToast();}
+}
+
 function reiniciarCarrito(){
     CARRITO = [];
     localStorage.removeItem('carrito');
@@ -207,6 +222,6 @@ btnComprar.onclick = () =>{
 
 filtroSeleccion.addEventListener('change', filtrar)
 
-window.onload = persistirCarrito();
+window.onload = persistirCarrito(), recordarCarrito();
 
 
