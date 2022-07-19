@@ -10,6 +10,14 @@ class Pedido {
         this.link = link;
         this.precio = precio
     }
+    enviarPedido(){  
+        fetch('https://eoa76zm4bv2ytl2.m.pipedream.net',{
+            method: 'POST',
+            body: JSON.stringify(CARRITO)
+        }).then(
+            console.log('pedido enviado')
+        )
+    }
 }
 
 //Display de productos y selección
@@ -165,16 +173,6 @@ function reiniciarCarrito(){
     sumarCantidad()
 }
 
-//envia el pedido a una REST API mockeada
-
-function enviarCompra(){  
-    fetch('https://eoa76zm4bv2ytl2.m.pipedream.net',{
-        method: 'POST',
-        body: JSON.stringify(CARRITO)
-    }).then(
-        console.log('pedido enviado')
-    )
-}
 function notificar(){
     swal(`${CARRITO[0].cliente}, ¡gracias por elegirnos! Recibirás tu compra en ${CARRITO[0].direccion} dentro de una semana, te enviamos todos los detalles de tu compra a ${CARRITO[0].email}`
     ) .then(
@@ -203,6 +201,7 @@ btnEliminar.onclick = () =>{
     sumarCantidad(CARRITO);
     localStorage.setItem('carrito-img', divFotos.innerHTML)
     localStorage.setItem('carrito', JSON.stringify(CARRITO));
+    cantidadCompra.textContent === "0" && localStorage.removeItem('carrito');
 }
 btnComprar.onclick = () =>{
     let precioTotal = 0;
@@ -214,11 +213,10 @@ btnComprar.onclick = () =>{
         buttons: ['Cancelar', 'OK']
       }).then((conf) => {
         conf && notificar();
-        enviarCompra();
+        CARRITO[0].enviarPedido();
         reiniciarCarrito();
         });
 }
-
 
 filtroSeleccion.addEventListener('change', filtrar)
 
