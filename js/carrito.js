@@ -60,7 +60,9 @@ let PRODUCTOS = [];
 function actualizarNombre() {
     objetoElegido = PRODUCTOS.find(prod => prod.link == productoSeleccionado.getAttribute('src'))
     nombreProducto.textContent = objetoElegido.modelo;
-    nombreProducto.scrollIntoView();
+    fadeIn(nombreProducto);
+    fadeIn(productoSeleccionado)
+    nombreProducto.scrollIntoView({block:"center"});
     if (nombreProducto !== ""){
         tiendaControl.style.display = "grid"
     }
@@ -69,6 +71,17 @@ function actualizarNombre() {
 //Crea las cards
 //de los productos repasando
 //el array
+
+function fadeIn(ele){
+    ele.style.opacity = 0;
+    function tick() {
+        ele.style.opacity = +ele.style.opacity + 0.01;
+    if (ele.style.opacity < 1) {
+        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16)
+        };
+    }
+    tick();
+}
 
 function filtrar(){
     fondoTienda.style.display = "none";
@@ -80,6 +93,7 @@ function filtrar(){
             crearFiltrados(filtroSeleccion.value);
             crearCards(PRODUCTOS_FILTRADOS)
         }
+        fadeIn(fotosProductos)
         fotosProductos.scrollIntoView();
 }
 function crearFiltrados(val){
