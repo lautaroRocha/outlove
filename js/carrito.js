@@ -26,6 +26,16 @@ function actualizarNombre() {
     if (nombreProducto !== ""){
         tiendaControl.style.display = "grid"
     }
+    talleCalzado();
+}
+
+function talleCalzado(){
+    if (objetoElegido.clase == "calzado"){
+    talle.innerHTML = '<option value="38">38</option><option value="M">39</option><option value="L">40</option><option value="XL">41</option><option value="XXL">42</option>'
+    }
+    else {
+        talle.innerHTML = '<option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XLL</option>'
+    }
 }
 
 //Crea las cards
@@ -83,18 +93,20 @@ function llenarCarrito(){
 //envia los datos del form
 //al carrit
 
+let talle = document.querySelector("#talle");
+let cantidad = document.querySelector("#canti").value;
+let email = document.querySelector("#obs").value;
+let cliente = document.querySelector("#cliente").value;
+let direccion = document.querySelector("#direccion").value;
+
+
 function enviarAlCarrito() {
-    let talle = document.querySelector("#talle").value;
-    let cantidad = document.querySelector("#canti").value;
-    let email = document.querySelector("#obs").value;
-    let cliente = document.querySelector("#cliente").value;
-    let direccion = document.querySelector("#direccion").value;
     //precio del producto
     let precio = PRODUCTOS.find(produ => produ.modelo == nombreProducto.textContent).precio
     ///evita que se envíe un pedido
     ///sin producto
     if(nombreProducto.innerText !== "" && cantidad > 0){
-        CARRITO.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle}`,  `${email}`, 
+        CARRITO.push(new Pedido(`${cliente}`, `${direccion}`, `${nombreProducto.textContent}`, `${cantidad}`, `${talle.value}`,  `${email}`, 
         `${productoSeleccionado.getAttribute('src')}`, `${precio}`));
         sumarCantidad(CARRITO);
         localStorage.setItem('carrito', JSON.stringify(CARRITO));
@@ -190,8 +202,6 @@ btnComprar.onclick = () =>{
         });
 }
 
-filtroSeleccion.addEventListener('change', filtrar)
+filtroSeleccion.addEventListener('change', filtrar);
 
 window.onload = persistirCarrito(), recordarCarrito(), leerProductos();
-
-
