@@ -1,60 +1,20 @@
-//Clase del objeto del carrito
-class Pedido {
-    constructor(cliente, direccion, producto, cantidad, talle, email, link, precio){
-        this.cliente = cliente,
-        this.direccion = direccion,
-        this.producto = producto,
-        this.cantidad = cantidad,
-        this.talle = talle,
-        this.email = email
-        this.link = link;
-        this.precio = precio
-    }
-    enviarPedido(){  
-        fetch('https://eoa76zm4bv2ytl2.m.pipedream.net',{
-            method: 'POST',
-            body: JSON.stringify(CARRITO)
-        }).then(
-            console.log('pedido enviado')
-        )
-    }
-}
+import { fadeIn } from './modules/fade.js'
 
-//Display de productos y selección
-const nombreProducto = document.querySelector('#producto-seleccion-nombre');
-const productoSeleccionado = document.querySelector('#producto-seleccion');
-const fotosProductos = document.querySelector('.tienda-fotos');
-const filtroSeleccion = document.querySelector("#filtro");
-const tiendaControl = document.querySelector('#tienda-control');
-let fondoTienda = document.querySelector("#fondo-tienda");
+import {Pedido, nombreProducto, productoSeleccionado, fotosProductos, filtroSeleccion, tiendaControl, fondoTienda, botonCart, datosClientes, pedidoGuardado, pedidoGuardadoFotos, botonModal, carritoModal, botonCerrarModal, cantidadCompra, divFotos, btnEliminar, btnComprar} from "./modules/var_carrito.js"
 
-//carrito
-let botonCart = document.querySelector("#btn-cart")
-let datosClientes = document.querySelector("#forma-cliente")
+//variables que no pueden ser importadas en m
+let PRODUCTOS = [];
+let PRODUCTOS_FILTRADOS; 
+let objetoElegido;
 let CARRITO = [];
-
-///Storage de Carrito
-let pedidoGuardado = localStorage.getItem('carrito');
-let pedidoGuardadoFotos = localStorage.getItem('carrito-img')
-
-///Modal del carrito
-
-let botonModal = document.querySelector('#boton-modal')
-let carritoModal = document.querySelector('#carrito-modal')
-let botonCerrarModal = document.querySelector("#cerrar-modal")
-let cantidadCompra = document.querySelector("#cantidad-comprada");
-let divFotos = document.querySelector("#carrito-flex");
-let btnEliminar = document.querySelector('#eli-prod');
-let btnComprar = document.querySelector('#btn-comprar')
-
 
 
 //Productos disponibles
-fetch('http://myjson.dit.upm.es/api/bins/411z')
-.then(response => response.json())
-.then(data => PRODUCTOS = data);
-
-let PRODUCTOS = [];
+function leerProductos() {
+    fetch('http://myjson.dit.upm.es/api/bins/411z')
+    .then(response => response.json())
+    .then(data => PRODUCTOS = data);
+}
 
 //El modelo del producto seleccionado
 function actualizarNombre() {
@@ -71,17 +31,6 @@ function actualizarNombre() {
 //Crea las cards
 //de los productos repasando
 //el array
-
-function fadeIn(ele){
-    ele.style.opacity = 0;
-    function tick() {
-        ele.style.opacity = +ele.style.opacity + 0.01;
-    if (ele.style.opacity < 1) {
-        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16)
-        };
-    }
-    tick();
-}
 
 function filtrar(){
     fondoTienda.style.display = "none";
@@ -198,6 +147,15 @@ function notificar(){
 
 datosClientes.addEventListener('submit', enviarAlCarrito);
 
+
+function enviarPedido(){  
+    fetch('https://eoa76zm4bv2ytl2.m.pipedream.net',{
+        method: 'POST',
+        body: JSON.stringify(CARRITO)
+    }).then(
+        console.log('pedido enviado')
+    )
+}
 //botones del modal
 
 botonModal.onclick =() => {
@@ -227,13 +185,13 @@ btnComprar.onclick = () =>{
         buttons: ['Cancelar', 'OK']
       }).then((conf) => {
         conf && notificar();
-        CARRITO[0].enviarPedido();
+        enviarPedido();
         reiniciarCarrito();
         });
 }
 
 filtroSeleccion.addEventListener('change', filtrar)
 
-window.onload = persistirCarrito(), recordarCarrito();
+window.onload = persistirCarrito(), recordarCarrito(), leerProductos();
 
 
