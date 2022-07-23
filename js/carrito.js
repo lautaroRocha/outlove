@@ -7,7 +7,7 @@ let PRODUCTOS = [];
 let PRODUCTOS_FILTRADOS; 
 let objetoElegido;
 let CARRITO = [];
-
+let talle = document.querySelector("#talle");
 
 //Productos disponibles
 function leerProductos() {
@@ -93,14 +93,13 @@ function llenarCarrito(){
 //envia los datos del form
 //al carrit
 
-let talle = document.querySelector("#talle");
-let cantidad = document.querySelector("#canti").value;
-let email = document.querySelector("#obs").value;
-let cliente = document.querySelector("#cliente").value;
-let direccion = document.querySelector("#direccion").value;
 
 
 function enviarAlCarrito() {
+    let cantidad = document.querySelector("#canti").value;
+    let email = document.querySelector("#obs").value;
+    let cliente = document.querySelector("#cliente").value;
+    let direccion = document.querySelector("#direccion").value;
     //precio del producto
     let precio = PRODUCTOS.find(produ => produ.modelo == nombreProducto.textContent).precio
     ///evita que se envíe un pedido
@@ -127,16 +126,12 @@ function persistirCarrito(){
    }
 }
 function recordarCarrito(){
-   if(pedidoGuardado){Toastify({
+    if(pedidoGuardado){Toastify({
     text: "¡Tenés productos en el carrito!",
     duration: 2000,
     gravity: "top", 
     position: "left", 
     avatar: "https://cdn-icons-png.flaticon.com/512/4555/4555971.png",
-    style: {
-      background: "#ffd600",
-
-    },
     onClick: function(){carritoModal.style.display = "block";} 
   }).showToast();}
 }
@@ -204,4 +199,6 @@ btnComprar.onclick = () =>{
 
 filtroSeleccion.addEventListener('change', filtrar);
 
-window.onload = persistirCarrito(), recordarCarrito(), leerProductos();
+window.onload = persistirCarrito(), leerProductos();
+
+window.onload = setTimeout(recordarCarrito, 1000)

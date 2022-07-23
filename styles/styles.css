@@ -85,14 +85,14 @@
   height: 100%; }
   .inicio-carrusel h1 {
     position: absolute;
-    width: 30%;
+    width: 50%;
     transform: skew(-10deg);
     right: 35px;
     top: 15px;
     z-index: 2;
     text-align: right;
     letter-spacing: .3rem;
-    font-size: clamp(0.5rem, 8vw, 1.5rem);
+    font-size: clamp(0.5rem, 7vw, 1.5rem);
     padding: 0;
     border-radius: 15px;
     color: #fff;
@@ -463,6 +463,16 @@ footer {
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3); }
     .swal-footer .swal-button--confirm:hover, .swal-footer .swal-button--cancel:hover {
       background-color: var(--verCla); }
+
+.toastify {
+  background: var(--ama);
+  box-shadow: -10px 10px var(--amaCla);
+  margin-left: 3vw;
+  margin-top: 4vh;
+  color: #000;
+  border-radius: 10px; }
+  .toastify:hover {
+    box-shadow: -10px 10px var(--amaCla), 0px 0px 15px rgba(255, 255, 255, 0.9); }
 
 * {
   margin: 0;
