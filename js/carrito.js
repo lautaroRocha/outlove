@@ -1,6 +1,6 @@
 import { fadeInFast, fadeInSlow } from './modules/fade.js'
 
-import {Pedido, productoSeleccionado, fotosProductos, filtroSeleccion, fondoTienda, tiendaControl, botonCart, datosClientes, pedidoGuardado, pedidoGuardadoFotos, botonModal, carritoModal, botonCerrarModal, cantidadCompra, divFotos, btnEliminar, btnComprar} from "./modules/var_carrito.js"
+import {Pedido, productoSeleccionado, fotosProductos, filtroSeleccion, fondoTienda, tiendaControl, botonCart, datosClientes, pedidoGuardado, pedidoGuardadoFotos, botonModal, carritoModal, botonCerrarModal, cantidadCompra, divFotos, btnEliminar, btnComprar, cardSeleccion, cardSeleccionExtra, botonLoQuiero} from "./modules/var_carrito.js"
 
 //variables que no pueden ser importadas en m
 let PRODUCTOS = [];
@@ -9,7 +9,7 @@ let objetoElegido;
 let CARRITO = [];
 let talle = document.querySelector("#talle");
 const nombreProducto = document.querySelector('#producto-seleccion-nombre');
-
+const precioProducto = document.querySelector('#producto-seleccion-precio')
 //Productos disponibles
 function leerProductos() {
     fetch('http://myjson.dit.upm.es/api/bins/411z')
@@ -20,16 +20,23 @@ function leerProductos() {
 //El modelo del producto seleccionado
 function actualizarNombre() {
     objetoElegido = PRODUCTOS.find(prod => prod.link == productoSeleccionado.getAttribute('src'))
+    cardSeleccion.style.display = "flex"
+    cardSeleccionExtra.style.display = "flex"
     nombreProducto.textContent = objetoElegido.modelo;
     fadeInSlow(nombreProducto);
     fadeInSlow(productoSeleccionado)
-    if (nombreProducto !== ""){
-        tiendaControl.style.display !== "grid" && fadeInFast(tiendaControl)
-        tiendaControl.style.display = "grid"
-    }
-    window.scrollTo(0, 1600)
+    fadeInSlow(cardSeleccionExtra)
+    precioProducto.textContent = objetoElegido.precio;
+    // if (cardSeleccion.style.display = "flex" ){
+    //         cardSeleccion.style.display !== "flex" && fadeInSlow(cardSeleccionExtra)
+    //         cardSeleccionExtra.style.display = "flex"
+    //  }
+    //window.screen.width >= 850 ? window.scrollTo(0, 1600) : window.scrollTo(0, 1200)
     talleCalzado();
 }
+
+
+
 
 function talleCalzado(){
     if (objetoElegido.clase == "calzado"){
@@ -204,3 +211,9 @@ filtroSeleccion.addEventListener('change', filtrar);
 window.onload = persistirCarrito(), leerProductos();
 
 window.onload = setTimeout(recordarCarrito, 1000)
+
+botonLoQuiero.onclick = () =>{
+    tiendaControl.style.display !== "grid" && fadeInFast(tiendaControl)
+    tiendaControl.style.display = "grid"
+    
+}

@@ -16,11 +16,11 @@
             display: none;
             grid-template-columns: 1fr 1fr;
             align-items: center;
-            margin: auto;
             gap: .5rem;
             background-color: var(--ver);
             padding: 1rem 2rem;
             width: 90%;
+            margin: auto;
             border-radius: 10px;
             box-shadow: -15px 15px  var(--verCla);
             font-weight: 800;
@@ -85,23 +85,60 @@
                     width: 9rem;
                 }
             }
+        }
     .tienda-tres{  
+        height: fit-content;
         .tienda-seleccion {
-            display: flex;
+            
+            position: relative;
+            display: none;
             flex-direction: column;
             align-items: center;
             img {
+                z-index: 1;
                 width: 50%;
                 margin: 1.5rem;
             }
             .seleccion-modelo{
+                position: relative;
+                top: 50px;
                 text-transform: uppercase;
+                color: var(--texto);
+                text-align: center;
+                max-width: 80vw;
+                font-size: clamp(30px, 15vw, 40px);
+                transform: skew(-3deg, -3deg);
+                background-color: var(--verCla);
+                padding: 2px
+               // border-radius: 10px;
+            }
+        }
+        .extra{
+            position: relative;
+            top: -100px;
+            display: none;
+            align-items: center;
+            gap: 2rem;
+            text-align: center;
+            .seleccion-modelo{
+                text-transform: uppercase;
+                color: var(--texto);
                 text-align: center;
                 margin: 7vh auto 3vh;
                 max-width: 80vw;
                 font-size: clamp(30px, 15vw, 40px);
+                transform: skew(-3deg, -3deg);
                 background-color: var(--verCla);
-                border-radius: 10px;
+                padding: 2px;
+                font-weight: 800;
+            }
+            a.seleccion-modelo{
+                font-size: 1rem;
+                text-decoration: none;
+                color: var(--amaCla);
+                &:hover{
+                    cursor: pointer;
+                }
             }
         }
         .tienda-fotos {
@@ -122,7 +159,7 @@
         }
     }
     }
-}
+
 
 .carrito-modal {
   display: none;
@@ -213,7 +250,6 @@
 @media (min-width: 850px){
     .tienda {
         .tienda-uno {
-                margin-bottom: 2rem;
                 .tienda-control{
                     width: 40vw;
                     max-width: 700px;
@@ -226,8 +262,8 @@
                     width: 20vw;
                     max-width: 150px;
                 }
-            }
-            .tienda-dos {
+        }
+        .tienda-dos {
                 display:flex;
                 max-width: 1300px;
                 .tienda-copy-fondo{
@@ -240,15 +276,26 @@
                         width: 15rem;
                     }
                 }
-            }
-            .tienda-tres{
-                display:flex;
+        }
+        .tienda-tres{
+                display:grid;
+                place-items: center;
+                grid-template-columns: repeat(12, 1fr);
+                grid-template-rows: repeat(12, 1fr);
                 max-width: 1300px;
+                max-height: 1400px;
+                .extra{
+                   grid-column: 1/6;
+                   grid-row: 4;
+                   z-index: 2;
+                }
                 .tienda-seleccion{
-                    width: 40%;
+                    grid-column: 1/6;
+                    grid-row: 1/4;
                 }
                 .tienda-fotos{
-                    width:40%;
+                    grid-column: 6/12;
+                    grid-row: 1/6;
                 }
             }
 }
