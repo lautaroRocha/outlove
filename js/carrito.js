@@ -1,6 +1,6 @@
-import { fadeIn } from './modules/fade.js'
+import { fadeInFast, fadeInSlow } from './modules/fade.js'
 
-import {Pedido, nombreProducto, productoSeleccionado, fotosProductos, filtroSeleccion, tiendaControl, fondoTienda, botonCart, datosClientes, pedidoGuardado, pedidoGuardadoFotos, botonModal, carritoModal, botonCerrarModal, cantidadCompra, divFotos, btnEliminar, btnComprar} from "./modules/var_carrito.js"
+import {Pedido, productoSeleccionado, fotosProductos, filtroSeleccion, fondoTienda, tiendaControl, botonCart, datosClientes, pedidoGuardado, pedidoGuardadoFotos, botonModal, carritoModal, botonCerrarModal, cantidadCompra, divFotos, btnEliminar, btnComprar} from "./modules/var_carrito.js"
 
 //variables que no pueden ser importadas en m
 let PRODUCTOS = [];
@@ -8,6 +8,7 @@ let PRODUCTOS_FILTRADOS;
 let objetoElegido;
 let CARRITO = [];
 let talle = document.querySelector("#talle");
+const nombreProducto = document.querySelector('#producto-seleccion-nombre');
 
 //Productos disponibles
 function leerProductos() {
@@ -20,12 +21,13 @@ function leerProductos() {
 function actualizarNombre() {
     objetoElegido = PRODUCTOS.find(prod => prod.link == productoSeleccionado.getAttribute('src'))
     nombreProducto.textContent = objetoElegido.modelo;
-    fadeIn(nombreProducto);
-    fadeIn(productoSeleccionado)
-    nombreProducto.scrollIntoView({block:"center"});
+    fadeInSlow(nombreProducto);
+    fadeInSlow(productoSeleccionado)
     if (nombreProducto !== ""){
+        tiendaControl.style.display !== "grid" && fadeInFast(tiendaControl)
         tiendaControl.style.display = "grid"
     }
+    window.scrollTo(0, 1600)
     talleCalzado();
 }
 
@@ -52,9 +54,9 @@ function filtrar(){
             crearFiltrados(filtroSeleccion.value);
             crearCards(PRODUCTOS_FILTRADOS)
         }
-        fadeIn(fotosProductos)
-        fotosProductos.scrollIntoView();
-}
+        fadeInSlow(fotosProductos)
+        window.scrollTo(0, 1800);
+    }
 function crearFiltrados(val){
     PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == val);
 }

@@ -1,4 +1,4 @@
-import { fadeIn } from './modules/fade.js'
+import { fadeInFast } from './modules/fade.js'
 
 
 import {imagenCarrusel, IMAGENES_CARRU, botonCarrusel, textoCarru, copyCarru} from "./modules/var_carrusel.js";
@@ -12,11 +12,11 @@ botonCarrusel.onclick= () => {
         }
 
 function cambiarFoto(){
-        fadeIn(imagenCarrusel)
+        fadeInFast(imagenCarrusel)
         imagenCarrusel.setAttribute('src' , `images/${IMAGENES_CARRU[posicion]}` )
         }
 function cambiarCopy() {
-            fadeIn(textoCarru)
+            fadeInFast(textoCarru)
             textoCarru.textContent = copyCarru[posicion];
         }
 

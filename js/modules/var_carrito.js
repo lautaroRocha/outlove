@@ -14,7 +14,6 @@ export class Pedido {
 }
 
 //Display de productos y selección
-export const nombreProducto = document.querySelector('#producto-seleccion-nombre');
 export const productoSeleccionado = document.querySelector('#producto-seleccion');
 export const fotosProductos = document.querySelector('.tienda-fotos');
 export const filtroSeleccion = document.querySelector("#filtro");
