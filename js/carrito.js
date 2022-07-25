@@ -1,6 +1,6 @@
-import { fadeIn } from './modules/fade.js'
+import { fadeInFast, fadeInSlow } from './modules/fade.js'
 
-import {Pedido, nombreProducto, productoSeleccionado, fotosProductos, filtroSeleccion, tiendaControl, fondoTienda, botonCart, datosClientes, pedidoGuardado, pedidoGuardadoFotos, botonModal, carritoModal, botonCerrarModal, cantidadCompra, divFotos, btnEliminar, btnComprar} from "./modules/var_carrito.js"
+import {Pedido, productoSeleccionado, fotosProductos, filtroSeleccion, fondoTienda, tiendaControl, botonCart, datosClientes, pedidoGuardado, pedidoGuardadoFotos, botonModal, carritoModal, botonCerrarModal, cantidadCompra, divFotos, btnEliminar, btnComprar, cardSeleccion, cardSeleccionExtra, botonLoQuiero} from "./modules/var_carrito.js"
 
 //variables que no pueden ser importadas en m
 let PRODUCTOS = [];
@@ -8,6 +8,8 @@ let PRODUCTOS_FILTRADOS;
 let objetoElegido;
 let CARRITO = [];
 let talle = document.querySelector("#talle");
+const nombreProducto = document.querySelector('#producto-seleccion-nombre');
+const precioProducto = document.querySelector('#producto-seleccion-precio')
 
 //Productos disponibles
 function leerProductos() {
@@ -19,13 +21,13 @@ function leerProductos() {
 //El modelo del producto seleccionado
 function actualizarNombre() {
     objetoElegido = PRODUCTOS.find(prod => prod.link == productoSeleccionado.getAttribute('src'))
+    cardSeleccion.style.display = "flex"
+    cardSeleccionExtra.style.display = "flex"
     nombreProducto.textContent = objetoElegido.modelo;
-    fadeIn(nombreProducto);
-    fadeIn(productoSeleccionado)
-    nombreProducto.scrollIntoView({block:"center"});
-    if (nombreProducto !== ""){
-        tiendaControl.style.display = "grid"
-    }
+    precioProducto.textContent = '$' + objetoElegido.precio;
+    fadeInSlow(nombreProducto);
+    fadeInSlow(productoSeleccionado)
+    fadeInSlow(cardSeleccionExtra)
     talleCalzado();
 }
 
@@ -43,7 +45,6 @@ function talleCalzado(){
 //el array
 
 function filtrar(){
-    fondoTienda.style.display = "none";
         if (filtroSeleccion.value == "todo"){
             limpiarSeleccion();
             crearCards(PRODUCTOS);
@@ -52,9 +53,9 @@ function filtrar(){
             crearFiltrados(filtroSeleccion.value);
             crearCards(PRODUCTOS_FILTRADOS)
         }
-        fadeIn(fotosProductos)
-        fotosProductos.scrollIntoView();
-}
+        fadeInSlow(fotosProductos)
+        window.scrollTo(0, 1800);
+    }
 function crearFiltrados(val){
     PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == val);
 }
@@ -69,6 +70,10 @@ function crearCards(arr){
         }
 }
 function limpiarSeleccion(){   
+    cardSeleccion.style.display = "none"
+    cardSeleccionExtra.style.display = "none"
+    tiendaControl.style.display = "none";
+    fondoTienda.style.display = "none";
     fotosProductos.innerHTML = "";
     nombreProducto.textContent = "";
     productoSeleccionado.setAttribute('src', "")
@@ -91,16 +96,13 @@ function llenarCarrito(){
 }
 
 //envia los datos del form
-//al carrit
-
-
+//al carrito
 
 function enviarAlCarrito() {
     let cantidad = document.querySelector("#canti").value;
     let email = document.querySelector("#obs").value;
     let cliente = document.querySelector("#cliente").value;
     let direccion = document.querySelector("#direccion").value;
-    //precio del producto
     let precio = PRODUCTOS.find(produ => produ.modelo == nombreProducto.textContent).precio
     ///evita que se envíe un pedido
     ///sin producto
@@ -150,11 +152,16 @@ function notificar(){
      )
 }
 
-///enviar datos
-
-datosClientes.addEventListener('submit', enviarAlCarrito);
-
-
+function añadido() {
+    Toastify({
+    text: "¡Envíamos tu selección al carrito!",
+    duration: 1000,
+    gravity: "top", 
+    position: "left", 
+    avatar: "https://cdn-icons-png.flaticon.com/512/4555/4555971.png",
+    onClick: function(){carritoModal.style.display = "block";} 
+  }).showToast();
+}
 function enviarPedido(){  
     fetch('https://eoa76zm4bv2ytl2.m.pipedream.net',{
         method: 'POST',
@@ -163,8 +170,16 @@ function enviarPedido(){
         console.log('pedido enviado')
     )
 }
-//botones del modal
 
+///EVENTOS
+
+datosClientes.onsubmit =() =>{
+    enviarAlCarrito();
+    añadido();
+}
+filtroSeleccion.onchange =() =>{
+    filtrar();
+}
 botonModal.onclick =() => {
     carritoModal.style.display = "block";
 }
@@ -196,9 +211,9 @@ btnComprar.onclick = () =>{
         reiniciarCarrito();
         });
 }
-
-filtroSeleccion.addEventListener('change', filtrar);
-
+botonLoQuiero.onclick = () =>{
+    tiendaControl.style.display !== "grid" && fadeInFast(tiendaControl)
+    tiendaControl.style.display = "grid" 
+}
 window.onload = persistirCarrito(), leerProductos();
-
 window.onload = setTimeout(recordarCarrito, 1000)

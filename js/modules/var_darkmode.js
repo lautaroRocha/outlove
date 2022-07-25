@@ -6,6 +6,7 @@ export let bodyTag = document.querySelector("body");
 export function setDark(){
     bodyTag.setAttribute('class', 'dark')
     hojasCopy.forEach( hoja => hoja.setAttribute('class', 'fondo-hojas-osc'))
+    
 }
 
 export function setLight(){
