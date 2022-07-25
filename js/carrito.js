@@ -10,6 +10,7 @@ let CARRITO = [];
 let talle = document.querySelector("#talle");
 const nombreProducto = document.querySelector('#producto-seleccion-nombre');
 const precioProducto = document.querySelector('#producto-seleccion-precio')
+
 //Productos disponibles
 function leerProductos() {
     fetch('http://myjson.dit.upm.es/api/bins/411z')
@@ -23,15 +24,12 @@ function actualizarNombre() {
     cardSeleccion.style.display = "flex"
     cardSeleccionExtra.style.display = "flex"
     nombreProducto.textContent = objetoElegido.modelo;
+    precioProducto.textContent = '$' + objetoElegido.precio;
     fadeInSlow(nombreProducto);
     fadeInSlow(productoSeleccionado)
     fadeInSlow(cardSeleccionExtra)
-    precioProducto.textContent = '$' + objetoElegido.precio;
-    // nombreProducto.text == "" ? 
-    //window.screen.width >= 850 ? window.scrollTo(0, 1600) : window.scrollTo(0, 1200)
     talleCalzado();
 }
-
 
 function talleCalzado(){
     if (objetoElegido.clase == "calzado"){
@@ -164,13 +162,6 @@ function añadido() {
     onClick: function(){carritoModal.style.display = "block";} 
   }).showToast();
 }
-
-
-///enviar datos
-
-datosClientes.addEventListener('submit', enviarAlCarrito);
-datosClientes.addEventListener('submit', añadido);
-
 function enviarPedido(){  
     fetch('https://eoa76zm4bv2ytl2.m.pipedream.net',{
         method: 'POST',
@@ -179,8 +170,16 @@ function enviarPedido(){
         console.log('pedido enviado')
     )
 }
-//botones del modal
 
+///EVENTOS
+
+datosClientes.onsubmit =() =>{
+    enviarAlCarrito();
+    añadido();
+}
+filtroSeleccion.onchange =() =>{
+    filtrar();
+}
 botonModal.onclick =() => {
     carritoModal.style.display = "block";
 }
@@ -212,15 +211,9 @@ btnComprar.onclick = () =>{
         reiniciarCarrito();
         });
 }
-
-filtroSeleccion.addEventListener('change', filtrar);
-
-window.onload = persistirCarrito(), leerProductos();
-
-window.onload = setTimeout(recordarCarrito, 1000)
-
 botonLoQuiero.onclick = () =>{
     tiendaControl.style.display !== "grid" && fadeInFast(tiendaControl)
-    tiendaControl.style.display = "grid"
-    
+    tiendaControl.style.display = "grid" 
 }
+window.onload = persistirCarrito(), leerProductos();
+window.onload = setTimeout(recordarCarrito, 1000)
