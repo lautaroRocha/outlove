@@ -6,7 +6,8 @@
   --amaCla: #ffff52;
   --amaOsc: #;
   --bg: #fff;
-  --texto: #000; }
+  --texto: #000;
+  --accion: #000; }
 
 .dark {
   --ver: #900060;
@@ -16,7 +17,8 @@
   --amaCla: #ffff52;
   --amaOsc: #c7a500;
   --bg: #333;
-  --texto: #fff; }
+  --texto: #fff;
+  --accion: #ffff52; }
 
 .cabecera {
   background-color: var(--verOsc);
@@ -358,7 +360,7 @@ footer {
     .tienda .tienda-tres .extra a.seleccion-modelo {
       font-size: 1rem;
       text-decoration: none;
-      color: var(--amaCla); }
+      color: var(--accion); }
       .tienda .tienda-tres .extra a.seleccion-modelo:hover {
         cursor: pointer;
         box-shadow: -2px 2px 10px var(--amaCla), 2px -2px 10px var(--amaCla);
