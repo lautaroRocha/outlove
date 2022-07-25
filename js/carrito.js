@@ -26,16 +26,11 @@ function actualizarNombre() {
     fadeInSlow(nombreProducto);
     fadeInSlow(productoSeleccionado)
     fadeInSlow(cardSeleccionExtra)
-    precioProducto.textContent = objetoElegido.precio;
-    // if (cardSeleccion.style.display = "flex" ){
-    //         cardSeleccion.style.display !== "flex" && fadeInSlow(cardSeleccionExtra)
-    //         cardSeleccionExtra.style.display = "flex"
-    //  }
+    precioProducto.textContent = '$' + objetoElegido.precio;
+    // nombreProducto.text == "" ? 
     //window.screen.width >= 850 ? window.scrollTo(0, 1600) : window.scrollTo(0, 1200)
     talleCalzado();
 }
-
-
 
 
 function talleCalzado(){
@@ -52,7 +47,6 @@ function talleCalzado(){
 //el array
 
 function filtrar(){
-    fondoTienda.style.display = "none";
         if (filtroSeleccion.value == "todo"){
             limpiarSeleccion();
             crearCards(PRODUCTOS);
@@ -78,6 +72,10 @@ function crearCards(arr){
         }
 }
 function limpiarSeleccion(){   
+    cardSeleccion.style.display = "none"
+    cardSeleccionExtra.style.display = "none"
+    tiendaControl.style.display = "none";
+    fondoTienda.style.display = "none";
     fotosProductos.innerHTML = "";
     nombreProducto.textContent = "";
     productoSeleccionado.setAttribute('src', "")
@@ -100,16 +98,13 @@ function llenarCarrito(){
 }
 
 //envia los datos del form
-//al carrit
-
-
+//al carrito
 
 function enviarAlCarrito() {
     let cantidad = document.querySelector("#canti").value;
     let email = document.querySelector("#obs").value;
     let cliente = document.querySelector("#cliente").value;
     let direccion = document.querySelector("#direccion").value;
-    //precio del producto
     let precio = PRODUCTOS.find(produ => produ.modelo == nombreProducto.textContent).precio
     ///evita que se envíe un pedido
     ///sin producto
@@ -159,10 +154,22 @@ function notificar(){
      )
 }
 
+function añadido() {
+    Toastify({
+    text: "¡Envíamos tu selección al carrito!",
+    duration: 1000,
+    gravity: "top", 
+    position: "left", 
+    avatar: "https://cdn-icons-png.flaticon.com/512/4555/4555971.png",
+    onClick: function(){carritoModal.style.display = "block";} 
+  }).showToast();
+}
+
+
 ///enviar datos
 
 datosClientes.addEventListener('submit', enviarAlCarrito);
-
+datosClientes.addEventListener('submit', añadido);
 
 function enviarPedido(){  
     fetch('https://eoa76zm4bv2ytl2.m.pipedream.net',{

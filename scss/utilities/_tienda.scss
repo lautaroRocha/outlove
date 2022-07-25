@@ -87,7 +87,6 @@
             }
         }
     .tienda-tres{  
-        height: fit-content;
         .tienda-seleccion {
             
             position: relative;
@@ -138,6 +137,8 @@
                 color: var(--amaCla);
                 &:hover{
                     cursor: pointer;
+                    box-shadow: -2px 2px 10px var(--amaCla), 2px -2px 10px var(--amaCla) ;
+                    transform: scale(1.5) skew(-3deg, -3deg);
                 }
             }
         }
