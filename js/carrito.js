@@ -3,10 +3,8 @@ import { fadeInFast} from './modules/fade.js'
 import { filtroSeleccion, tiendaControl, botonCart, datosClientes, botonModal, carritoModal, botonCerrarModal, cantidadCompra, divFotos, btnEliminar, btnComprar, botonLoQuiero, enviarAlCarrito, añadido, persistirCarrito, leerProductos, recordarCarrito, filtrar, CARRITO, sumarCantidad, notificar, enviarPedido, reiniciarCarrito } from "./modules/var_carrito.js"
 
 
-///ONLOAD
 window.onload = persistirCarrito(), leerProductos();
 window.onload = setTimeout(recordarCarrito, 1000)
-
 
 
 datosClientes.addEventListener('submit', enviarAlCarrito, añadido)
