@@ -28,7 +28,6 @@ export let botonLoQuiero = document.querySelector('#btn-loquiero')
 export let botonCart = document.querySelector("#btn-cart")
 export let datosClientes = document.querySelector("#forma-cliente")
 
-
 ///Storage de Carrito
 export let pedidoGuardado = localStorage.getItem('carrito');
 export let pedidoGuardadoFotos = localStorage.getItem('carrito-img')

@@ -173,10 +173,11 @@ function enviarPedido(){
 
 ///EVENTOS
 
-datosClientes.onsubmit =() =>{
-    enviarAlCarrito();
-    añadido();
-}
+//sintaxis compatible con el atributo
+//return false de la forma en HTML
+datosClientes.addEventListener('submit', enviarAlCarrito, añadido)
+
+
 filtroSeleccion.onchange =() =>{
     filtrar();
 }
