@@ -163,7 +163,7 @@ function añadido() {
   }).showToast();
 }
 function enviarPedido(){  
-    fetch('https://eoa76zm4bv2ytl2.m.pipedream.net',{
+    fetch('https://eowyibfgz8ma6uc.m.pipedream.net',{
         method: 'POST',
         body: JSON.stringify(CARRITO)
     }).then(
@@ -173,10 +173,11 @@ function enviarPedido(){
 
 ///EVENTOS
 
-datosClientes.onsubmit =() =>{
-    enviarAlCarrito();
-    añadido();
-}
+//sintaxis compatible con el atributo
+//return false de la forma en HTML
+datosClientes.addEventListener('submit', enviarAlCarrito, añadido)
+
+
 filtroSeleccion.onchange =() =>{
     filtrar();
 }
