@@ -8,6 +8,9 @@
 
 ## 💡Sobre el proyecto
 
+Para incorporar todos los conocimientos vistos en el curso desarrollé una SAP para una marca ficticia. Además de programar todas sus funcionalidades con JavaScript, diseñé y desarrollé la app de manera totalmente responsiva con SASS. Las funcionalidades del proyecto son 3, y están divididas en los tres scripts dentro de la carpeta /js. 
+
+
 ### ⭐ darkmode.js
 
 Este script maneja la funcionalidad que cambia entre dos modos de interfaz, el predeterminado y el modo oscuro. El algoritmo se encarga de guardar un valor en el almacenamiento  local del navegador, que se actualiza cada vez que el cliente cambia de modo; y consultar ese valor mientras cargue la app, por lo que la app siempre se inicia en el modo preferido del usuario.
