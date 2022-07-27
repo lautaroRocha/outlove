@@ -14,17 +14,19 @@ export class Pedido {
 }
 
 //Display de productos y selección
-export const nombreProducto = document.querySelector('#producto-seleccion-nombre');
 export const productoSeleccionado = document.querySelector('#producto-seleccion');
 export const fotosProductos = document.querySelector('.tienda-fotos');
 export const filtroSeleccion = document.querySelector("#filtro");
 export const tiendaControl = document.querySelector('#tienda-control');
 export let fondoTienda = document.querySelector("#fondo-tienda");
+export const cardSeleccion = document.querySelector('.tienda-seleccion');
+export const cardSeleccionExtra = document.querySelector('.extra');
+
 
 //carrito
+export let botonLoQuiero = document.querySelector('#btn-loquiero')
 export let botonCart = document.querySelector("#btn-cart")
 export let datosClientes = document.querySelector("#forma-cliente")
-
 
 ///Storage de Carrito
 export let pedidoGuardado = localStorage.getItem('carrito');

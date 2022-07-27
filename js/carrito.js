@@ -1,6 +1,6 @@
-import { fadeIn } from './modules/fade.js'
+import { fadeInFast, fadeInSlow } from './modules/fade.js'
 
-import {Pedido, nombreProducto, productoSeleccionado, fotosProductos, filtroSeleccion, tiendaControl, fondoTienda, botonCart, datosClientes, pedidoGuardado, pedidoGuardadoFotos, botonModal, carritoModal, botonCerrarModal, cantidadCompra, divFotos, btnEliminar, btnComprar} from "./modules/var_carrito.js"
+import {Pedido, productoSeleccionado, fotosProductos, filtroSeleccion, fondoTienda, tiendaControl, botonCart, datosClientes, pedidoGuardado, pedidoGuardadoFotos, botonModal, carritoModal, botonCerrarModal, cantidadCompra, divFotos, btnEliminar, btnComprar, cardSeleccion, cardSeleccionExtra, botonLoQuiero} from "./modules/var_carrito.js"
 
 //variables que no pueden ser importadas en m
 let PRODUCTOS = [];
@@ -8,25 +8,29 @@ let PRODUCTOS_FILTRADOS;
 let objetoElegido;
 let CARRITO = [];
 let talle = document.querySelector("#talle");
+const nombreProducto = document.querySelector('#producto-seleccion-nombre');
+const precioProducto = document.querySelector('#producto-seleccion-precio')
 
 //Productos disponibles
 function leerProductos() {
     fetch('http://myjson.dit.upm.es/api/bins/411z')
-    .then(response => response.json())
-    .then(data => PRODUCTOS = data);
+    .then(response => response.json()
+    .then(data => PRODUCTOS = data))
+    .catch((err) => console.log('hubo un error: ' + err))
 }
 
 //El modelo del producto seleccionado
 function actualizarNombre() {
     objetoElegido = PRODUCTOS.find(prod => prod.link == productoSeleccionado.getAttribute('src'))
+    cardSeleccion.style.display = "flex"
+    cardSeleccionExtra.style.display = "flex"
     nombreProducto.textContent = objetoElegido.modelo;
-    fadeIn(nombreProducto);
-    fadeIn(productoSeleccionado)
-    nombreProducto.scrollIntoView({block:"center"});
-    if (nombreProducto !== ""){
-        tiendaControl.style.display = "grid"
-    }
+    precioProducto.textContent = '$' + objetoElegido.precio;
+    fadeInSlow(nombreProducto);
+    fadeInSlow(productoSeleccionado)
+    fadeInSlow(cardSeleccionExtra)
     talleCalzado();
+    nombreProducto.scrollIntoView({block: "center"});
 }
 
 function talleCalzado(){
@@ -41,9 +45,7 @@ function talleCalzado(){
 //Crea las cards
 //de los productos repasando
 //el array
-
 function filtrar(){
-    fondoTienda.style.display = "none";
         if (filtroSeleccion.value == "todo"){
             limpiarSeleccion();
             crearCards(PRODUCTOS);
@@ -52,8 +54,8 @@ function filtrar(){
             crearFiltrados(filtroSeleccion.value);
             crearCards(PRODUCTOS_FILTRADOS)
         }
-        fadeIn(fotosProductos)
-        fotosProductos.scrollIntoView();
+        fadeInSlow(fotosProductos)
+        fotosProductos.scrollIntoView({block: "center"});
 }
 function crearFiltrados(val){
     PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == val);
@@ -69,6 +71,10 @@ function crearCards(arr){
         }
 }
 function limpiarSeleccion(){   
+    cardSeleccion.style.display = "none"
+    cardSeleccionExtra.style.display = "none"
+    tiendaControl.style.display = "none";
+    fondoTienda.style.display = "none";
     fotosProductos.innerHTML = "";
     nombreProducto.textContent = "";
     productoSeleccionado.setAttribute('src', "")
@@ -76,7 +82,6 @@ function limpiarSeleccion(){
 
 ///muestra el total de 
 //productos pedidos en el carrito
-
 function sumarCantidad() {
     cantidadCompra.textContent = CARRITO.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
 }
@@ -91,16 +96,12 @@ function llenarCarrito(){
 }
 
 //envia los datos del form
-//al carrit
-
-
-
+//al carrito
 function enviarAlCarrito() {
     let cantidad = document.querySelector("#canti").value;
     let email = document.querySelector("#obs").value;
     let cliente = document.querySelector("#cliente").value;
     let direccion = document.querySelector("#direccion").value;
-    //precio del producto
     let precio = PRODUCTOS.find(produ => produ.modelo == nombreProducto.textContent).precio
     ///evita que se envíe un pedido
     ///sin producto
@@ -117,7 +118,6 @@ function enviarAlCarrito() {
 
 //carga el carrito
 //desde el localStorage
-
 function persistirCarrito(){
     if(pedidoGuardado !== null){
         CARRITO = JSON.parse(pedidoGuardado);
@@ -142,29 +142,37 @@ function reiniciarCarrito(){
     divFotos.innerHTML = "";
     sumarCantidad()
 }
-
 function notificar(){
     swal(`${CARRITO[0].cliente}, ¡gracias por elegirnos! Recibirás tu compra en ${CARRITO[0].direccion} dentro de una semana, te enviamos todos los detalles de tu compra a ${CARRITO[0].email}`
     ) .then(
      carritoModal.style.display = "none"
      )
 }
-
-///enviar datos
-
-datosClientes.addEventListener('submit', enviarAlCarrito);
-
-
+function añadido() {
+    Toastify({
+    text: "¡Envíamos tu selección al carrito!",
+    duration: 1000,
+    gravity: "top", 
+    position: "left", 
+    avatar: "https://cdn-icons-png.flaticon.com/512/4555/4555971.png",
+    onClick: function(){carritoModal.style.display = "block";} 
+  }).showToast();
+}
 function enviarPedido(){  
-    fetch('https://eoa76zm4bv2ytl2.m.pipedream.net',{
+    fetch('https://eowyibfgz8ma6uc.m.pipedream.net',{
         method: 'POST',
         body: JSON.stringify(CARRITO)
-    }).then(
-        console.log('pedido enviado')
-    )
+    }).then(console.log('pedido enviado'))
 }
-//botones del modal
 
+///EVENTOS
+
+//sintaxis compatible con el atributo
+//return false de la forma en HTML
+datosClientes.addEventListener('submit', enviarAlCarrito, añadido)
+filtroSeleccion.onchange =() =>{
+    filtrar();
+}
 botonModal.onclick =() => {
     carritoModal.style.display = "block";
 }
@@ -191,14 +199,21 @@ btnComprar.onclick = () =>{
         text: `El precio total de tu compra es $${precioTotal}, ¿querés continuar?`,
         buttons: ['Cancelar', 'OK']
       }).then((conf) => {
-        conf && notificar();
+        if(conf){ 
+        notificar();
         enviarPedido();
         reiniciarCarrito();
-        });
+        }else {
+            console.log('pedido cancelado')
+            reiniciarCarrito();
+        }
+        }) 
+        
+        
 }
-
-filtroSeleccion.addEventListener('change', filtrar);
-
+botonLoQuiero.onclick = () =>{
+    tiendaControl.style.display !== "grid" && fadeInFast(tiendaControl)
+    tiendaControl.style.display = "grid" 
+}
 window.onload = persistirCarrito(), leerProductos();
-
 window.onload = setTimeout(recordarCarrito, 1000)

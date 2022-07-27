@@ -1,21 +1,56 @@
 footer {
     position: relative;
-    margin-top: 20vh;
     bottom: 0;
+    margin-top: 20vh;
     width: 100vw;
     height: 30vh;
     background-color: var(--verCla);
+    display: grid;
     .foot {
        display: flex;
        height: 100%;
        flex-direction: row-reverse;
        .shade {
            background-color: var(--verOsc);
-           width: 40%;
+           width: 33.3%;
+           display: flex;
+           flex-direction: column;
+           justify-content: end;
+           span{
+            text-align: right;
+            margin: .5rem;
+           color: var(--texto);
+           font-size: 1rem;
+            a{
+            font-size: 1rem;
+            color: var(--amaCla);
+            }
+            }
        }
        .shader {
            background-color: var(--ver);
-           width: 30%;
+           width: 33.3%;
        }
+     
+    }
+    .firma{
+        position: absolute;
+        justify-self: center;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 20%;
+        font-weight: 800;
+        margin-top: 1.5rem;
+        a{
+            text-decoration: none;
+            color: var(--amaCla);
+            font-size: 1rem;
+        }
     }
 }
+
+// @media (min-width: 600px){
+   
+// }
