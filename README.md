@@ -11,7 +11,7 @@ https://outlove.netlify.app/
 Este script maneja la funcionalidad que cambia entre dos modos de interfaz, el predeterminado y el modo oscuro. El algoritmo se encarga de guardar un valor en el almacenamiento  local del navegador, que se actualiza cada vez que el cliente cambia de modo; y consultar ese valor mientras cargue la app, por lo que la app siempre se inicia en el modo preferido del usuario.
     
 
-![comparación-modo.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c9547158-a7ab-4cf5-8fe3-c4d5ee7ad0da/comparacin-modo.png)
+![comparación-modo.png](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c9547158-a7ab-4cf5-8fe3-c4d5ee7ad0da/comparacin-modo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220727%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220727T185735Z&X-Amz-Expires=86400&X-Amz-Signature=9b8fd98a1888c3e82d60d5a08f62396b5d25f393b90bd7e0c7af93d3880e3e99&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22comparaci%25C3%25B3n-modo.png%22&x-id=GetObject)
 
 # 🎠carrusel.js
 
