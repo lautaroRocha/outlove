@@ -14,8 +14,9 @@ const precioProducto = document.querySelector('#producto-seleccion-precio')
 //Productos disponibles
 function leerProductos() {
     fetch('http://myjson.dit.upm.es/api/bins/411z')
-    .then(response => response.json())
-    .then(data => PRODUCTOS = data);
+    .then(response => response.json()
+    .then(data => PRODUCTOS = data))
+    .catch((err) => console.log('hubo un error: ' + err))
 }
 
 //El modelo del producto seleccionado
@@ -29,6 +30,7 @@ function actualizarNombre() {
     fadeInSlow(productoSeleccionado)
     fadeInSlow(cardSeleccionExtra)
     talleCalzado();
+    nombreProducto.scrollIntoView({block: "center"});
 }
 
 function talleCalzado(){
@@ -43,7 +45,6 @@ function talleCalzado(){
 //Crea las cards
 //de los productos repasando
 //el array
-
 function filtrar(){
         if (filtroSeleccion.value == "todo"){
             limpiarSeleccion();
@@ -54,8 +55,8 @@ function filtrar(){
             crearCards(PRODUCTOS_FILTRADOS)
         }
         fadeInSlow(fotosProductos)
-        window.scrollTo(0, 1800);
-    }
+        fotosProductos.scrollIntoView({block: "center"});
+}
 function crearFiltrados(val){
     PRODUCTOS_FILTRADOS = PRODUCTOS.filter(produ => produ.clase == val);
 }
@@ -81,7 +82,6 @@ function limpiarSeleccion(){
 
 ///muestra el total de 
 //productos pedidos en el carrito
-
 function sumarCantidad() {
     cantidadCompra.textContent = CARRITO.reduce( (ac, pedido) => ac + parseInt(pedido.cantidad), 0);
 }
@@ -97,7 +97,6 @@ function llenarCarrito(){
 
 //envia los datos del form
 //al carrito
-
 function enviarAlCarrito() {
     let cantidad = document.querySelector("#canti").value;
     let email = document.querySelector("#obs").value;
@@ -119,7 +118,6 @@ function enviarAlCarrito() {
 
 //carga el carrito
 //desde el localStorage
-
 function persistirCarrito(){
     if(pedidoGuardado !== null){
         CARRITO = JSON.parse(pedidoGuardado);
@@ -144,14 +142,12 @@ function reiniciarCarrito(){
     divFotos.innerHTML = "";
     sumarCantidad()
 }
-
 function notificar(){
     swal(`${CARRITO[0].cliente}, ¡gracias por elegirnos! Recibirás tu compra en ${CARRITO[0].direccion} dentro de una semana, te enviamos todos los detalles de tu compra a ${CARRITO[0].email}`
     ) .then(
      carritoModal.style.display = "none"
      )
 }
-
 function añadido() {
     Toastify({
     text: "¡Envíamos tu selección al carrito!",
@@ -166,9 +162,7 @@ function enviarPedido(){
     fetch('https://eowyibfgz8ma6uc.m.pipedream.net',{
         method: 'POST',
         body: JSON.stringify(CARRITO)
-    }).then(
-        console.log('pedido enviado')
-    )
+    }).then(console.log('pedido enviado'))
 }
 
 ///EVENTOS
@@ -176,8 +170,6 @@ function enviarPedido(){
 //sintaxis compatible con el atributo
 //return false de la forma en HTML
 datosClientes.addEventListener('submit', enviarAlCarrito, añadido)
-
-
 filtroSeleccion.onchange =() =>{
     filtrar();
 }
@@ -207,10 +199,17 @@ btnComprar.onclick = () =>{
         text: `El precio total de tu compra es $${precioTotal}, ¿querés continuar?`,
         buttons: ['Cancelar', 'OK']
       }).then((conf) => {
-        conf && notificar();
+        if(conf){ 
+        notificar();
         enviarPedido();
         reiniciarCarrito();
-        });
+        }else {
+            console.log('pedido cancelado')
+            reiniciarCarrito();
+        }
+        }) 
+        
+        
 }
 botonLoQuiero.onclick = () =>{
     tiendaControl.style.display !== "grid" && fadeInFast(tiendaControl)
