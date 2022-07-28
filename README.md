@@ -4,7 +4,7 @@
 🎁 SPA con carrito de compras 
  
 
-<b> LIVE DEMO : https://outlove.netlify.app/ </b>
+<b> LIVE DEMO : https://lautarorocha.github.io/outlove </b>
 
 ## 💡Sobre el proyecto
 
