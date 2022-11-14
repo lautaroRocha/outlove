@@ -56,7 +56,7 @@ export const precioProducto = document.querySelector('#producto-seleccion-precio
 
 //Productos disponibles
 export function leerProductos() {
-    fetch('http://myjson.dit.upm.es/api/bins/411z')
+    fetch('https://api.npoint.io/131787e421a0d882a264')
     .then(response => response.json()
     .then(data => PRODUCTOS = data))
     .catch((err) => console.log('hubo un error: ' + err))
